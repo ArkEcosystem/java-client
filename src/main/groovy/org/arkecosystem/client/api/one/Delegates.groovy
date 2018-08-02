@@ -5,6 +5,10 @@ import org.arkecosystem.client.http.Client
 
 class Delegates extends AbstractAPI
 {
+    Delegates(Client client) {
+        super(client)
+    }
+
     Object all(Map query = [:])
     {
         this.client.get('delegates', query)

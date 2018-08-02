@@ -21,7 +21,7 @@ class Client {
 
         if (params != null) {
             params.entrySet().each { Map.Entry<String, String> param ->
-                httpBuider.addQueryParameter(param.getKey(), param.getValue())
+                httpBuider.addQueryParameter(param.getKey(), param.getValue().toString())
             }
         }
 
