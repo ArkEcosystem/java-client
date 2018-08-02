@@ -8,7 +8,7 @@ class TransactionsTest extends Specification {
         setup:
             def connection = new Connection('https://explorer.ark.io:8443/api/')
         when:
-            def actual = connection.transactions().all()
+            def actual = connection.api('transactions').all()
         then:
             actual.success == true
     }

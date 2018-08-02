@@ -2,16 +2,21 @@ package org.arkecosystem.client
 
 import org.arkecosystem.client.http.*
 import org.arkecosystem.client.api.*
-import org.arkecosystem.client.api.one.*
 
 class Connection {
     Client client
+    int version
 
     Connection(String host, int version = 1) {
+        this.version = version
         this.client = new Client(host, version)
     }
 
-    AbstractAPI transactions () {
-        return new Transactions(this.client)
+    AbstractAPI api (String name) {
+        String className = name[0].toUpperCase() + name[1..-1]
+
+        Class c = Class.forName("org.arkecosystem.client.api.one.$className")
+
+        c.newInstance this.client
     }
 }
