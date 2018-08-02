@@ -7,16 +7,17 @@ class Connection {
     Client client
     int version
 
-    Connection(String host, int version = 1) {
-        this.version = version
-        this.client = new Client(host, version)
+    Connection(Map config) {
+        this.version = config.get('version')
+        this.client = new Client(config.get('host'), config.get('version'))
     }
 
     AbstractAPI api (String name) {
         String className = name[0].toUpperCase() + name[1..-1]
+        String version = (this.version == 1) ? 'one' : 'two'
 
-        Class c = Class.forName("org.arkecosystem.client.api.one.$className")
-
-        c.newInstance this.client
+        Class
+            .forName("org.arkecosystem.client.api.$version.$className")
+            .newInstance this.client
     }
 }
