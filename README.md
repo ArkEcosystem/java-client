@@ -6,10 +6,10 @@
 
 > A simple Java API client for the ARK Blockchain.
 
-[![Build Status](https://img.shields.io/travis/ArkEcosystem/java-client/master.svg)](https://travis-ci.org/ArkEcosystem/java-client)
-[![Codecov](https://img.shields.io/codecov/c/github/arkecosystem/java-client.svg)](https://codecov.io/gh/arkecosystem/java-client)
-[![Latest Version](https://img.shields.io/github/release/ArkEcosystem/java-client.svg)](https://github.com/ArkEcosystem/java-client/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://badgen.now.sh/travis/ArkEcosystem/java-client)](https://badgen.now.sh/travis/ArkEcosystem/java-client)
+[![Codecov](https://badgen.now.sh/codecov/c/github/arkecosystem/java-client)](https://codecov.io/gh/arkecosystem/java-client)
+[![Latest Version](https://badgen.now.sh/github/release/ArkEcosystem/java-client)](https://github.com/ArkEcosystem/java-client/releases)
+[![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](https://opensource.org/licenses/MIT)
 
 ## Documentation
 
