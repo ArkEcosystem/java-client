@@ -29,7 +29,7 @@ public class Wallets {
         return this.client.get("wallets/" + ip + "/transactions/sent");
     }
 
-    public LinkedTreeMap<String, Object> receivedtransactions(String ip) throws IOException {
+    public LinkedTreeMap<String, Object> receivedTransactions(String ip) throws IOException {
         return this.client.get("wallets/" + ip + "/transactions/received");
     }
 
