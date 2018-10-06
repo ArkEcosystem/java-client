@@ -1,6 +1,7 @@
 package org.arkecosystem.client;
 
 import org.arkecosystem.client.api.one.One;
+import org.arkecosystem.client.api.two.Two;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -69,13 +70,15 @@ public class ConnectionManagerTest {
         map.put("host", "dummy");
         map.put("version", 1);
 
-        manager.connect(map);
+        Connection<One> connection1 = manager.connect(map);
+        assertNotNull(connection1);
 
         map = new HashMap<>();
         map.put("host", "dummy");
         map.put("version", 2);
 
-        manager.connect(map, "backup");
+        Connection<Two> connection2 = manager.connect(map, "backup");
+        assertNotNull(connection2);
 
         assertEquals(2, manager.getConnections().size());
         manager.disconnect();
