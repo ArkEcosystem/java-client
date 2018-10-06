@@ -9,6 +9,10 @@ public class ConnectionManager {
     private Map<String, Connection<? extends AbstractAPI>> connections;
     private String defaultConnection = "main";
 
+    public ConnectionManager() {
+        this.connections = new HashMap<>();
+    }
+
     public String getDefaultConnection() {
         return this.defaultConnection;
     }
@@ -21,10 +25,6 @@ public class ConnectionManager {
         return this.connections;
     }
 
-    public ConnectionManager() {
-        this.connections = new HashMap<>();
-    }
-
     public <T extends AbstractAPI> Connection<T> connect(Map config, String name) {
         if (this.connections.containsKey(name)) {
             throw new IllegalArgumentException("Connection [" + name + "] is already configured.");
@@ -32,7 +32,7 @@ public class ConnectionManager {
 
         this.connections.put(name, new Connection<T>(config));
 
-        return (Connection<T>)this.connections.get(name);
+        return (Connection<T>) this.connections.get(name);
     }
 
     public <T extends AbstractAPI> Connection<T> connect(Map config) {
@@ -60,7 +60,7 @@ public class ConnectionManager {
             throw new IllegalArgumentException("Connection [" + name + "] not configured.");
         }
 
-        return (Connection<T>)this.connections.get(name);
+        return (Connection<T>) this.connections.get(name);
     }
 
     public Connection connection() {

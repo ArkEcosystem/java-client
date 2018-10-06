@@ -25,7 +25,7 @@ public class MockHelper {
     }
 
     public static <T extends AbstractAPI> Connection<T> connection() {
-        return (Connection<T>)MockHelper.connection(1);
+        return (Connection<T>) MockHelper.connection(1);
     }
 
 }

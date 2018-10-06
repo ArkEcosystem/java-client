@@ -6,7 +6,6 @@ import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,7 +15,7 @@ public class SignaturesTest {
     public void fee() throws IOException {
         Connection<One> connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().signatures.fee();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
 }

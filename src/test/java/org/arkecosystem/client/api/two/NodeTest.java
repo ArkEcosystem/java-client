@@ -15,21 +15,21 @@ public class NodeTest {
     void status() throws IOException {
         Connection<Two> connection = MockHelper.connection(2);
         LinkedTreeMap<String, Object> actual = connection.api().node.status();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void syncing() throws IOException {
         Connection<Two> connection = MockHelper.connection(2);
         LinkedTreeMap<String, Object> actual = connection.api().node.syncing();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void configuration() throws IOException {
         Connection<Two> connection = MockHelper.connection(2);
         LinkedTreeMap<String, Object> actual = connection.api().node.configuration();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
 }

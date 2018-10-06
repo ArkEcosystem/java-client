@@ -16,9 +16,9 @@ public class Connection<T extends AbstractAPI> {
 
     public Connection(Map<String, Object> config) {
         this.version = ((int) (config.get("version")));
-        this.client = new Client(config.get("host").toString(), (int)config.get("version"));
+        this.client = new Client(config.get("host").toString(), (int) config.get("version"));
 
-        this.api = (T)((this.version == 1) ? new One(this.client) : new Two(this.client));
+        this.api = (T) ((this.version == 1) ? new One(this.client) : new Two(this.client));
     }
 
     public T api() {

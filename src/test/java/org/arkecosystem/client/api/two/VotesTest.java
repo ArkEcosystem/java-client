@@ -15,14 +15,14 @@ public class VotesTest {
     void all() throws IOException {
         Connection<Two> connection = MockHelper.connection(2);
         LinkedTreeMap<String, Object> actual = connection.api().votes.all();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void show() throws IOException {
         Connection<Two> connection = MockHelper.connection(2);
         LinkedTreeMap<String, Object> actual = connection.api().votes.show("dummy");
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
 }

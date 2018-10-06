@@ -6,7 +6,6 @@ import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,21 +15,21 @@ public class LoaderTest {
     public void status() throws IOException {
         Connection<One> connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().loader.status();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     public void sync() throws IOException {
         Connection<One> connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().loader.sync();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     public void autoconfigure() throws IOException {
         Connection<One> connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().loader.autoconfigure();
-        assertTrue((boolean)actual.get("success"));
+        assertTrue((boolean) actual.get("success"));
     }
 
 }

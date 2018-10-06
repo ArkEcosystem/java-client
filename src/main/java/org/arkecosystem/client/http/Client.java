@@ -24,7 +24,7 @@ public class Client {
         HttpUrl.Builder httpBuider = HttpUrl.parse(this.host + url).newBuilder();
 
         if (params != null) {
-            for(Map.Entry<String, Object> entry : params.entrySet()) {
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
                 httpBuider.addQueryParameter(entry.getKey(), entry.getValue().toString());
             }
         }
