@@ -1,5 +1,6 @@
 package org.arkecosystem.client.api.one;
 
+import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.http.Client;
 
 import java.io.IOException;
@@ -13,22 +14,22 @@ public class Peers {
         this.client = client;
     }
 
-    public Object all(Map query) throws IOException {
+    public LinkedTreeMap<String, Object> all(Map query) throws IOException {
         return this.client.get("peers", query);
     }
 
-    public Object all() throws IOException {
+    public LinkedTreeMap<String, Object> all() throws IOException {
         return this.all(new HashMap());
     }
 
-    public Object show(String ip, int port) throws IOException {
+    public LinkedTreeMap<String, Object> show(String ip, int port) throws IOException {
         HashMap<String, Object> map = new HashMap<>();
         map.put("ip", ip);
         map.put("port", port);
         return this.client.get("peers/get", map);
     }
 
-    public Object version() throws IOException {
+    public LinkedTreeMap<String, Object> version() throws IOException {
         return this.client.get("peers/version");
     }
 
