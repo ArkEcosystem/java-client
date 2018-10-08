@@ -1,17 +1,17 @@
-language: groovy
+language: java
 
 jdk:
-    - oraclejdk8
-    - oraclejdk9
-    - oraclejdk10
-    - openjdk8
+- oraclejdk8
+- oraclejdk9
+- oraclejdk10
+- openjdk8
 
 before_script:
-    - chmod +x gradlew
+- chmod +x gradlew
 
 script:
-    - ./gradlew check
-    - ./gradlew jacocoTestReport
+- ./gradlew check
+- ./gradlew jacocoTestReport
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
