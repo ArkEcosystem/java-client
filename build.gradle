@@ -11,33 +11,42 @@ apply plugin:'maven'
 apply plugin:'maven-publish'
 apply plugin:'signing'
 
-group 'org.arkecosystem.client'
-version '0.1.0'
-
 repositories {
     jcenter()
     mavenCentral()
 }
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
-    classifier "sources"
-}
-
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
-    from javadoc.destinationDir
+    from javadoc
 }
 
-publishing {
-    publications {
-        arkEcosystem(MavenPublication) {
-            from components.java
-            artifact sourceJar
-            artifact javadocJar
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
-            pom {
-                groupId = 'org.arkecosystem.client'
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+          //   repository(url: "file://${buildDir}/repo") {}
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: '', password: '')
+            }
+
+         //   snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+          //      authentication(userName: ossrhUsername, password: ossrhPassword)
+          //  }
+
+            pom.project {
+                groupId = 'org.arkecosystem'
                 version = '0.1.0'
                 artifactId = 'arkecosystem-client'
 
@@ -71,22 +80,15 @@ publishing {
                 scm {
                     connection = 'scm:git:git://github.com/ArkEcosystem/java-client.git'
                     developerConnection = 'scm:git:ssh://github.com:ArkEcosystem/java-client.git'
-                    url = 'https://github.com/ArkEcosystem/java-client/tree/master'
+                    url = 'https://github.com/ArkEcosystem/java-client/tree/0.1.0'
                 }
             }
-        }
-    }
-
-    repositories {
-        maven {
-            name = 'myRepo'
-            url = "file://${buildDir}/repo"
         }
     }
 }
 
 signing {
-    sign publishing.publications.arkEcosystem
+    sign configurations.archives
 }
 
 dependencies {
