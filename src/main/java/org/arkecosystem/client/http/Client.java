@@ -12,7 +12,7 @@ public class Client {
     private String host;
     private int version;
     private OkHttpClient client;
-    private MediaType JSON = MediaType.parse("application/json charset=utf-8");
+    private MediaType JSON = MediaType.parse("application/json");
 
     public Client(String host, int version) {
         this.host = host;
