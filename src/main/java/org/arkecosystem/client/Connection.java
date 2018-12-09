@@ -1,7 +1,6 @@
 package org.arkecosystem.client;
 
 import org.arkecosystem.client.api.AbstractAPI;
-import org.arkecosystem.client.api.one.One;
 import org.arkecosystem.client.api.two.Two;
 import org.arkecosystem.client.http.Client;
 
@@ -18,7 +17,7 @@ public class Connection<T extends AbstractAPI> {
         this.version = ((int) (config.get("version")));
         this.client = new Client(config.get("host").toString(), (int) config.get("version"));
 
-        this.api = (T) ((this.version == 1) ? new One(this.client) : new Two(this.client));
+        this.api = (T) new Two(this.client));
     }
 
     public T api() {
