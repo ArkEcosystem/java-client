@@ -1,6 +1,6 @@
 package org.arkecosystem.client;
 
-import org.arkecosystem.client.api.two.Two;
+import org.arkecosystem.client.api.Api;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class ConnectionManagerTest {
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
-        assertEquals(2, manager.getConnections().size());
+        assertEquals(1, manager.getConnections().size());
     }
 
     @Test
@@ -29,11 +29,12 @@ public class ConnectionManagerTest {
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
-        assertEquals(2, manager.getConnections().size());
+        assertEquals(1, manager.getConnections().size());
         manager.disconnect();
         assertEquals(0, manager.getConnections().size());
     }
 
+    @Test
     public void connection() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
@@ -41,9 +42,9 @@ public class ConnectionManagerTest {
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
-        Connection<One> connection = manager.connection("main");
+        Connection<Api> connection = manager.connection("main");
         assertNotNull(connection);
-        assertEquals(Two.class, connection.api().getClass());
+        assertEquals(Api.class, connection.api().getClass());
     }
 
     @Test
@@ -69,14 +70,14 @@ public class ConnectionManagerTest {
         map.put("host", "dummy");
         map.put("version", 2);
 
-        Connection<Two> connection1 = manager.connect(map);
+        Connection<Api> connection1 = manager.connect(map);
         assertNotNull(connection1);
 
         map = new HashMap<>();
         map.put("host", "dummy");
         map.put("version", 2);
 
-        Connection<Two> connection2 = manager.connect(map, "backup");
+        Connection<Api> connection2 = manager.connect(map, "backup");
         assertNotNull(connection2);
 
         assertEquals(2, manager.getConnections().size());
