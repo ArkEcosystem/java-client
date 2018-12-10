@@ -1,4 +1,4 @@
-package org.arkecosystem.client.api.two;
+package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.http.Client;
