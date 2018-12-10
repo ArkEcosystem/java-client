@@ -10,12 +10,11 @@ import static junit.framework.TestCase.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConnectionManagerTest {
-
     @Test
     public void connect() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("version", 1);
+        map.put("API-Version", 1);
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
@@ -26,7 +25,7 @@ public class ConnectionManagerTest {
     public void disconnect() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("version", 1);
+        map.put("API-Version", 1);
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
@@ -35,10 +34,11 @@ public class ConnectionManagerTest {
         assertEquals(0, manager.getConnections().size());
     }
 
+    @Test
     public void connection() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("version", 1);
+        map.put("API-Version", 1);
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
@@ -68,14 +68,14 @@ public class ConnectionManagerTest {
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("version", 1);
+        map.put("API-Version", 1);
 
         Connection<One> connection1 = manager.connect(map);
         assertNotNull(connection1);
 
         map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("version", 2);
+        map.put("API-Version", 2);
 
         Connection<Two> connection2 = manager.connect(map, "backup");
         assertNotNull(connection2);
