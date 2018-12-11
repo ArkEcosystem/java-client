@@ -6,6 +6,7 @@ import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +23,7 @@ public class TransactionsTest {
     @Test
     void create() throws IOException {
         Connection<Two> connection = MockHelper.connection(2);
-        LinkedTreeMap<String, Object> actual = connection.api().transactions.create(new HashMap<>());
+        LinkedTreeMap<String, Object> actual = connection.api().transactions.create(new ArrayList<>());
         assertTrue((boolean) actual.get("success"));
     }
 
