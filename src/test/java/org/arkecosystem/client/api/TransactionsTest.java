@@ -22,7 +22,7 @@ public class TransactionsTest {
 
     @Test
     void create() throws IOException {
-        Connection<Two> connection = MockHelper.connection(2);
+        Connection<Api> connection = MockHelper.connection(2);
         LinkedTreeMap<String, Object> actual = connection.api().transactions.create(new ArrayList<>());
         assertTrue((boolean) actual.get("success"));
     }
