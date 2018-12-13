@@ -12,7 +12,7 @@ public class MockHelper {
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", mockServer.url("/").toString());
-        map.put("version", version);
+        map.put("API-Version", version);
         Connection connection = new Connection(map);
 
         MockResponse mockedResponse = new MockResponse();

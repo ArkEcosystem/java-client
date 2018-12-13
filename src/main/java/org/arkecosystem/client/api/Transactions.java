@@ -4,6 +4,8 @@ import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.http.Client;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Transactions {
@@ -17,8 +19,10 @@ public class Transactions {
         return this.client.get("transactions");
     }
 
-    public LinkedTreeMap<String, Object> create(Map<String, Object> transactions) throws IOException {
-        return this.client.post("transactions", transactions);
+    public LinkedTreeMap<String, Object> create(List<String> transactions) throws IOException {
+        HashMap<String, List<String>> params = new HashMap<>();
+        params.put("transactions", transactions);
+        return this.client.post("transactions", params);
     }
 
     public LinkedTreeMap<String, Object> show(String id) throws IOException {

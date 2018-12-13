@@ -9,7 +9,6 @@ plugins {
 apply plugin:'java'
 apply plugin:'maven'
 apply plugin:'maven-publish'
-apply plugin:'signing'
 
 repositories {
     jcenter()
@@ -35,20 +34,20 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-          //   repository(url: "file://${buildDir}/repo") {}
+            repository(url: "file://${buildDir}/repo") {}
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-                authentication(userName: '', password: '')
-            }
+            //repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+             // authentication(userName: '', password: '')
+           // }
 
-         //   snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+          //  snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
           //      authentication(userName: ossrhUsername, password: ossrhPassword)
           //  }
 
             pom.project {
                 groupId = 'org.arkecosystem'
-                version = '0.1.0'
-                artifactId = 'arkecosystem-client'
+                version = '0.1.2'
+                artifactId = 'client'
 
                 name = 'java-client'
                 description = 'A simple Java API client for the ARK Blockchain.'
@@ -80,7 +79,7 @@ uploadArchives {
                 scm {
                     connection = 'scm:git:git://github.com/ArkEcosystem/java-client.git'
                     developerConnection = 'scm:git:ssh://github.com:ArkEcosystem/java-client.git'
-                    url = 'https://github.com/ArkEcosystem/java-client/tree/0.1.0'
+                    url = 'https://github.com/ArkEcosystem/java-client/tree/0.1.2'
                 }
             }
         }
@@ -88,6 +87,8 @@ uploadArchives {
 }
 
 if (project.hasProperty("signing.keyId")) {
+    apply plugin:'signing'
+
     signing {
         sign configurations.archives
     }
@@ -117,6 +118,6 @@ jacocoTestReport {
     }
 }
 
-task wrapper(type: Wrapper) {
+wrapper {
     gradleVersion = '4.9'
 }

@@ -7,10 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## 0.1.1 - 2018-11-23
+## 0.1.2 - 2018-12-10
 
-### Changed:
-- Always send the `Content-Type` header
+### Changed
+- Create transaction with a list instead of a map
+
+## 0.1.1 - 2018-12-10
+
+### Fixed:
+- Set `API-Version` instead of `version` on client
+- Correctly set request headers
 
 ## 0.1.0 - 2018-10-08
 - Initial Release

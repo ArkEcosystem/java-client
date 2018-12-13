@@ -10,26 +10,34 @@ import java.util.Map;
 
 public class Client {
     private String host;
-    private int version;
+    private String version;
     private OkHttpClient client;
+    private Headers headers;
     private MediaType JSON = MediaType.parse("application/json");
 
-    public Client(String host, int version) {
+    public Client(String host, String version) {
         this.host = host;
         this.version = version;
         this.client = new OkHttpClient();
+
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put("API-Version", this.version);
+        headers.put("content-type", this.JSON.toString());
+
+        this.headers = Headers.of(headers);
     }
 
     public LinkedTreeMap<String, Object> get(String url, Map<String, Object> params) throws IOException {
-        HttpUrl.Builder httpBuider = HttpUrl.parse(this.host + url).newBuilder();
+        HttpUrl.Builder httpBuilder = HttpUrl.parse(this.host + url).newBuilder();
 
         if (params != null) {
             for (Map.Entry<String, Object> entry : params.entrySet()) {
-                httpBuider.addQueryParameter(entry.getKey(), entry.getValue().toString());
+                httpBuilder.addQueryParameter(entry.getKey(), entry.getValue().toString());
             }
         }
 
-        Request request = new Request.Builder().url(httpBuider.build()).build();
+        Request request = new Request.Builder().headers(this.headers).url(httpBuilder.build()).build();
+
         Response response = client.newCall(request).execute();
         return new Gson().fromJson(response.body().string(), new LinkedTreeMap<String, Object>().getClass());
     }
@@ -40,7 +48,7 @@ public class Client {
 
     public LinkedTreeMap<String, Object> post(String url, Map payload) throws IOException {
         RequestBody body = RequestBody.create(JSON, new Gson().toJson(payload));
-        Request request = new Request.Builder().url(this.host + url).post(body).build();
+        Request request = new Request.Builder().headers(this.headers).url(this.host + url).post(body).build();
         Response response = client.newCall(request).execute();
         return new Gson().fromJson(response.body().string(), new LinkedTreeMap<String, Object>().getClass());
     }
