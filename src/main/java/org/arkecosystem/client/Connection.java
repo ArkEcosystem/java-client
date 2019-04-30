@@ -16,7 +16,7 @@ public class Connection {
         this.api = new Api(this.client);
     }
 
-    public api() {
+    public Api api() {
         return this.api;
     }
 }
