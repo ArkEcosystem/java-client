@@ -19,8 +19,8 @@ public class Transactions {
         return this.client.get("transactions");
     }
 
-    public LinkedTreeMap<String, Object> create(List<String> transactions) throws IOException {
-        HashMap<String, List<String>> params = new HashMap<>();
+    public LinkedTreeMap<String, Object> create(List<HashMap> transactions) throws IOException {
+        HashMap<String, List<HashMap>> params = new HashMap<>();
         params.put("transactions", transactions);
         return this.client.post("transactions", params);
     }

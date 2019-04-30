@@ -4,3 +4,5 @@
 .tags
 build
 out/
+.meghanada/
+.DS_Store
