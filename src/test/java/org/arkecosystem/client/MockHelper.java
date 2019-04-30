@@ -2,7 +2,6 @@ package org.arkecosystem.client;
 
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.arkecosystem.client.api.AbstractAPI;
 
 import java.util.HashMap;
 
@@ -24,8 +23,8 @@ public class MockHelper {
         return connection;
     }
 
-    public static <T extends AbstractAPI> Connection<T> connection() {
-        return (Connection<T>) MockHelper.connection(2);
+    public static Connection connection() {
+        return (Connection) MockHelper.connection(2);
     }
 
 }

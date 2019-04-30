@@ -2,8 +2,7 @@ package org.arkecosystem.client.api;
 
 import org.arkecosystem.client.http.Client;
 
-public class Api extends AbstractAPI {
-
+public class Api {
     public Blocks blocks;
     public Delegates delegates;
     public Node node;
@@ -13,7 +12,6 @@ public class Api extends AbstractAPI {
     public Wallets wallets;
 
     public Api(Client client) {
-        super(client);
         this.blocks = new Blocks(client);
         this.delegates = new Delegates(client);
         this.node = new Node(client);

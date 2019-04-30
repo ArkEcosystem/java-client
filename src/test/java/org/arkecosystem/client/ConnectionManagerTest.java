@@ -41,7 +41,7 @@ public class ConnectionManagerTest {
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
-        Connection<Api> connection = manager.connection("main");
+        Connection connection = manager.connection("main");
         assertNotNull(connection);
         assertEquals(Api.class, connection.api().getClass());
     }
@@ -69,14 +69,14 @@ public class ConnectionManagerTest {
         map.put("host", "dummy");
         map.put("API-Version", 1);
 
-        Connection<Api> connection1 = manager.connect(map);
+        Connection connection1 = manager.connect(map);
         assertNotNull(connection1);
 
         map = new HashMap<>();
         map.put("host", "dummy");
         map.put("API-Version", 2);
 
-        Connection<Api> connection2 = manager.connect(map, "backup");
+        Connection connection2 = manager.connect(map, "backup");
         assertNotNull(connection2);
 
         assertEquals(2, manager.getConnections().size());
