@@ -17,24 +17,24 @@ public class Wallets {
         return this.client.get("wallets");
     }
 
-    public LinkedTreeMap<String, Object> show(String ip) throws IOException {
-        return this.client.get("wallets/" + ip);
+    public LinkedTreeMap<String, Object> show(String id) throws IOException {
+        return this.client.get("wallets/" + id);
     }
 
-    public LinkedTreeMap<String, Object> transactions(String ip) throws IOException {
-        return this.client.get("wallets/" + ip + "/transactions");
+    public LinkedTreeMap<String, Object> transactions(String id) throws IOException {
+        return this.client.get("wallets/" + id + "/transactions");
     }
 
-    public LinkedTreeMap<String, Object> sentTransactions(String ip) throws IOException {
-        return this.client.get("wallets/" + ip + "/transactions/sent");
+    public LinkedTreeMap<String, Object> sentTransactions(String id) throws IOException {
+        return this.client.get("wallets/" + id + "/transactions/sent");
     }
 
-    public LinkedTreeMap<String, Object> receivedTransactions(String ip) throws IOException {
-        return this.client.get("wallets/" + ip + "/transactions/received");
+    public LinkedTreeMap<String, Object> receivedTransactions(String id) throws IOException {
+        return this.client.get("wallets/" + id + "/transactions/received");
     }
 
-    public LinkedTreeMap<String, Object> votes(String ip) throws IOException {
-        return this.client.get("wallets/" + ip + "/votes");
+    public LinkedTreeMap<String, Object> votes(String id) throws IOException {
+        return this.client.get("wallets/" + id + "/votes");
     }
 
     public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
