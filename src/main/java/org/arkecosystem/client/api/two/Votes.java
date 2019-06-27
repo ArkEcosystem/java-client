@@ -16,8 +16,8 @@ public class Votes {
         return this.client.get("votes");
     }
 
-    public LinkedTreeMap<String, Object> show(String ip) throws IOException {
-        return this.client.get("votes/" + ip);
+    public LinkedTreeMap<String, Object> show(String id) throws IOException {
+        return this.client.get("votes/" + id);
     }
 
 }
