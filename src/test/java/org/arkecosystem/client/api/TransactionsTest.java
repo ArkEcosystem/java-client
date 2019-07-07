@@ -15,49 +15,49 @@ public class TransactionsTest {
 
     @Test
     void all() throws IOException {
-        Connection connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.all();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void create() throws IOException {
-        Connection connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.create(new ArrayList<>());
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void show() throws IOException {
-        Connection connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.show("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void allUnconfirmed() throws IOException {
-        Connection connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.allUnconfirmed();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void showUnconfirmed() throws IOException {
-        Connection connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.showUnconfirmed("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void search() throws IOException {
-        Connection connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.search(new HashMap<>());
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void types() throws IOException {
-        Connection connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.types();
         assertTrue((boolean) actual.get("success"));
     }

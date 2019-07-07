@@ -10,18 +10,15 @@ import java.util.Map;
 
 public class Client {
     private String host;
-    private String version;
     private OkHttpClient client;
     private Headers headers;
     private MediaType JSON = MediaType.parse("application/json");
 
-    public Client(String host, String version) {
+    public Client(String host) {
         this.host = host;
-        this.version = version;
         this.client = new OkHttpClient();
 
         HashMap<String, String> headers = new HashMap<>();
-        headers.put("API-Version", this.version);
         headers.put("content-type", this.JSON.toString());
 
         this.headers = Headers.of(headers);

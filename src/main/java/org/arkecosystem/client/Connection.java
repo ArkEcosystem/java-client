@@ -8,11 +8,9 @@ import java.util.Map;
 public class Connection {
     private Api api;
     private Client client;
-    private int version;
 
     public Connection(Map<String, Object> config) {
-        this.version = ((int) (config.get("API-Version")));
-        this.client = new Client(config.get("host").toString(), Integer.toString(this.version));
+        this.client = new Client(config.get("host").toString());
         this.api = new Api(this.client);
     }
 
