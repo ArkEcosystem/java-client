@@ -21,9 +21,4 @@ public class MockHelper {
 
         return connection;
     }
-
-    public static Connection connection() {
-        return (Connection) MockHelper.connection();
-    }
-
 }
