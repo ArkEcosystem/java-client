@@ -45,7 +45,7 @@ public class Client {
 
     public LinkedTreeMap<String, Object> post(String url, Map payload) throws IOException {
         RequestBody body = RequestBody.create(JSON, new Gson().toJson(payload));
-        Request request = new Request.Builder().headers(this.headers).url(this.host + url).post(body).build();
+        Request request = new Request.Builder().url(this.host + url).post(body).build();
         Response response = client.newCall(request).execute();
         return new Gson().fromJson(response.body().string(), new LinkedTreeMap<String, Object>().getClass());
     }
