@@ -1,4 +1,4 @@
-package org.arkecosystem.client.api.two;
+package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.http.Client;
@@ -16,8 +16,8 @@ public class Votes {
         return this.client.get("votes");
     }
 
-    public LinkedTreeMap<String, Object> show(String ip) throws IOException {
-        return this.client.get("votes/" + ip);
+    public LinkedTreeMap<String, Object> show(String id) throws IOException {
+        return this.client.get("votes/" + id);
     }
 
 }

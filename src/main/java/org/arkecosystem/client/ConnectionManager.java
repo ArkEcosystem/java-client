@@ -1,12 +1,10 @@
 package org.arkecosystem.client;
 
-import org.arkecosystem.client.api.AbstractAPI;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConnectionManager {
-    private Map<String, Connection<? extends AbstractAPI>> connections;
+    private Map<String, Connection> connections;
     private String defaultConnection = "main";
 
     public ConnectionManager() {
@@ -21,21 +19,21 @@ public class ConnectionManager {
         this.defaultConnection = name;
     }
 
-    public Map<String, Connection<? extends AbstractAPI>> getConnections() {
+    public Map<String, Connection> getConnections() {
         return this.connections;
     }
 
-    public <T extends AbstractAPI> Connection<T> connect(Map config, String name) {
+    public Connection connect(Map config, String name) {
         if (this.connections.containsKey(name)) {
             throw new IllegalArgumentException("Connection [" + name + "] is already configured.");
         }
 
-        this.connections.put(name, new Connection<T>(config));
+        this.connections.put(name, new Connection(config));
 
-        return (Connection<T>) this.connections.get(name);
+        return this.connections.get(name);
     }
 
-    public <T extends AbstractAPI> Connection<T> connect(Map config) {
+    public Connection connect(Map config) {
         return connect(config, "main");
     }
 
@@ -51,7 +49,7 @@ public class ConnectionManager {
         disconnect(null);
     }
 
-    public <T extends AbstractAPI> Connection<T> connection(String name) {
+    public Connection connection(String name) {
         if (name == null || name.isEmpty()) {
             name = getDefaultConnection();
         }
@@ -60,7 +58,7 @@ public class ConnectionManager {
             throw new IllegalArgumentException("Connection [" + name + "] not configured.");
         }
 
-        return (Connection<T>) this.connections.get(name);
+        return this.connections.get(name);
     }
 
     public Connection connection() {

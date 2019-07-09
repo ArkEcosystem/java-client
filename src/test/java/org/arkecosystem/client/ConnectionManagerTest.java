@@ -1,7 +1,6 @@
 package org.arkecosystem.client;
 
-import org.arkecosystem.client.api.one.One;
-import org.arkecosystem.client.api.two.Two;
+import org.arkecosystem.client.api.Api;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -14,7 +13,6 @@ public class ConnectionManagerTest {
     public void connect() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("API-Version", 1);
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
@@ -25,7 +23,6 @@ public class ConnectionManagerTest {
     public void disconnect() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("API-Version", 1);
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
@@ -38,13 +35,12 @@ public class ConnectionManagerTest {
     public void connection() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("API-Version", 1);
 
         ConnectionManager manager = new ConnectionManager();
         manager.connect(map);
-        Connection<One> connection = manager.connection("main");
+        Connection connection = manager.connection("main");
         assertNotNull(connection);
-        assertEquals(One.class, connection.api().getClass());
+        assertEquals(Api.class, connection.api().getClass());
     }
 
     @Test
@@ -68,16 +64,14 @@ public class ConnectionManagerTest {
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("API-Version", 1);
 
-        Connection<One> connection1 = manager.connect(map);
+        Connection connection1 = manager.connect(map);
         assertNotNull(connection1);
 
         map = new HashMap<>();
         map.put("host", "dummy");
-        map.put("API-Version", 2);
 
-        Connection<Two> connection2 = manager.connect(map, "backup");
+        Connection connection2 = manager.connect(map, "backup");
         assertNotNull(connection2);
 
         assertEquals(2, manager.getConnections().size());

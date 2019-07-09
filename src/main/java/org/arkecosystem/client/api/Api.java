@@ -1,10 +1,8 @@
-package org.arkecosystem.client.api.two;
+package org.arkecosystem.client.api;
 
-import org.arkecosystem.client.api.AbstractAPI;
 import org.arkecosystem.client.http.Client;
 
-public class Two extends AbstractAPI {
-
+public class Api {
     public Blocks blocks;
     public Delegates delegates;
     public Node node;
@@ -13,8 +11,7 @@ public class Two extends AbstractAPI {
     public Votes votes;
     public Wallets wallets;
 
-    public Two(Client client) {
-        super(client);
+    public Api(Client client) {
         this.blocks = new Blocks(client);
         this.delegates = new Delegates(client);
         this.node = new Node(client);

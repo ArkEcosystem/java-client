@@ -1,4 +1,4 @@
-package org.arkecosystem.client.api.two;
+package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.Connection;
@@ -13,21 +13,21 @@ public class NodeTest {
 
     @Test
     void status() throws IOException {
-        Connection<Two> connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().node.status();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void syncing() throws IOException {
-        Connection<Two> connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().node.syncing();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void configuration() throws IOException {
-        Connection<Two> connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().node.configuration();
         assertTrue((boolean) actual.get("success"));
     }

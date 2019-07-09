@@ -1,4 +1,4 @@
-package org.arkecosystem.client.api.two;
+package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.Connection;
@@ -13,14 +13,14 @@ public class PeersTest {
 
     @Test
     void all() throws IOException {
-        Connection<Two> connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().peers.all();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void show() throws IOException {
-        Connection<Two> connection = MockHelper.connection(2);
+        Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().peers.show("dummy");
         assertTrue((boolean) actual.get("success"));
     }
