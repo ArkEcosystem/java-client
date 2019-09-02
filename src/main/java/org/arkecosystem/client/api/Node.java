@@ -24,4 +24,8 @@ public class Node {
         return this.client.get("node/configuration");
     }
 
+    public LinkedTreeMap<String, Object> crypto() throws IOException {
+        return this.client.get("node/configuration/crypto");
+    }
+
 }
