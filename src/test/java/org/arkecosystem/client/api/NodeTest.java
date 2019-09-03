@@ -32,4 +32,11 @@ public class NodeTest {
         assertTrue((boolean) actual.get("success"));
     }
 
+    @Test
+    void crypto() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().node.crypto();
+        assertTrue((boolean) actual.get("success"));
+    }
+
 }
