@@ -45,4 +45,8 @@ public class Transactions {
         return this.client.get("transactions/types");
     }
 
+    public LinkedTreeMap<String, Object> fees() throws IOException {
+        return this.client.get("transactions/fees");
+    }
+
 }
