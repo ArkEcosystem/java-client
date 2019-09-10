@@ -4,7 +4,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.http.Client;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.HashMap;
 
 public class Node {
     Client client;
@@ -14,7 +14,9 @@ public class Node {
     }
 
     public LinkedTreeMap<String, Object> fees(Integer... days) throws IOException {
-        return this.client.get("node/fees", Map.of("days", days.length > 0 ? days[0] : null));
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("days", days.length > 0 ? days[0] : null);
+        return this.client.get("node/fees", parameters);
     }
 
     public LinkedTreeMap<String, Object> status() throws IOException {
