@@ -14,7 +14,7 @@ public class Node {
     }
 
     public LinkedTreeMap<String, Object> fees(Integer... days) throws IOException {
-        return this.client.get("node/fees", Map.of("days", days.length ? days[0] : null));
+        return this.client.get("node/fees", Map.of("days", days.length > 0 ? days[0] : null));
     }
 
     public LinkedTreeMap<String, Object> status() throws IOException {
