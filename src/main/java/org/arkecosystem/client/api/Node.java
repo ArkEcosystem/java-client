@@ -4,6 +4,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import org.arkecosystem.client.http.Client;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Node {
     Client client;
