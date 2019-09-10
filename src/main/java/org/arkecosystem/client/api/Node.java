@@ -12,6 +12,10 @@ public class Node {
         this.client = client;
     }
 
+    public LinkedTreeMap<String, Object> fees() throws IOException {
+        return this.client.get("node/fees");
+    }
+
     public LinkedTreeMap<String, Object> status() throws IOException {
         return this.client.get("node/status");
     }
