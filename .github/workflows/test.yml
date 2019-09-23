@@ -20,4 +20,6 @@ jobs:
             - name: Install
               run: gradle dependencies
             - name: Test
-              run: gradle test
+              run: gradle test && gradle jacocoTestReport
+            - name: Codecov
+              run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }}
