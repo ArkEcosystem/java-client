@@ -46,7 +46,7 @@ uploadArchives {
 
             pom.project {
                 groupId = 'org.arkecosystem'
-                version = '0.1.3'
+                version = '0.1.4'
                 artifactId = 'client'
 
                 name = 'java-client'
@@ -79,7 +79,7 @@ uploadArchives {
                 scm {
                     connection = 'scm:git:git://github.com/ArkEcosystem/java-client.git'
                     developerConnection = 'scm:git:ssh://github.com:ArkEcosystem/java-client.git'
-                    url = 'https://github.com/ArkEcosystem/java-client/tree/0.1.2'
+                    url = 'https://github.com/ArkEcosystem/java-client/tree/0.1.4'
                 }
             }
         }

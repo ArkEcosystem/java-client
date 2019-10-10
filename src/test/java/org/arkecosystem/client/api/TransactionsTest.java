@@ -68,5 +68,4 @@ public class TransactionsTest {
         LinkedTreeMap<String, Object> actual = connection.api().transactions.fees();
         assertTrue((boolean) actual.get("success"));
     }
-
 }

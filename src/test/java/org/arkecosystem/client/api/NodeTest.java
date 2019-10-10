@@ -45,5 +45,4 @@ public class NodeTest {
         LinkedTreeMap<String, Object> actual = connection.api().node.crypto();
         assertTrue((boolean) actual.get("success"));
     }
-
 }
