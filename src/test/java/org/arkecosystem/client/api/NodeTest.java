@@ -12,6 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class NodeTest {
 
     @Test
+    void fees() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().node.fees();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void status() throws IOException {
         Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().node.status();
@@ -32,4 +39,10 @@ public class NodeTest {
         assertTrue((boolean) actual.get("success"));
     }
 
+    @Test
+    void crypto() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().node.crypto();
+        assertTrue((boolean) actual.get("success"));
+    }
 }

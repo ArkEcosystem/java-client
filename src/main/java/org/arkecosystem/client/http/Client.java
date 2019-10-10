@@ -29,7 +29,9 @@ public class Client {
 
         if (params != null) {
             for (Map.Entry<String, Object> entry : params.entrySet()) {
-                httpBuilder.addQueryParameter(entry.getKey(), entry.getValue().toString());
+                if (entry.getValue() != null) {
+                    httpBuilder.addQueryParameter(entry.getKey(), entry.getValue().toString());
+                }
             }
         }
 
