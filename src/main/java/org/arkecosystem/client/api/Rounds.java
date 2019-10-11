@@ -1,9 +1,8 @@
 package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
+import org.arkecosystem.client.http.Client;
 
 public class Rounds {
     Client client;
@@ -15,5 +14,4 @@ public class Rounds {
     public LinkedTreeMap<String, Object> delegates(int id) throws IOException {
         return this.client.get("rounds/" + id + "/delegates");
     }
-
 }
