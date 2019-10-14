@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class Blocks {
-    Client client;
+    private Client client;
 
     public Blocks(Client client) {
         this.client = client;
@@ -15,6 +15,14 @@ public class Blocks {
 
     public LinkedTreeMap<String, Object> all() throws IOException {
         return this.client.get("blocks");
+    }
+
+    public LinkedTreeMap<String, Object> first() throws IOException {
+        return this.client.get("blocks/first");
+    }
+
+    public LinkedTreeMap<String, Object> last() throws IOException {
+        return this.client.get("blocks/first");
     }
 
     public LinkedTreeMap<String, Object> show(String id) throws IOException {

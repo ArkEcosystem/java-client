@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Transactions {
-    Client client;
+    private Client client;
 
     public Transactions(Client client) {
         this.client = client;

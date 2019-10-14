@@ -6,7 +6,7 @@ import org.arkecosystem.client.http.Client;
 import java.io.IOException;
 
 public class Rounds {
-    Client client;
+    private Client client;
 
     public Rounds(Client client) {
         this.client = client;
