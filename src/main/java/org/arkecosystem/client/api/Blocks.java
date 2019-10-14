@@ -22,7 +22,7 @@ public class Blocks {
     }
 
     public LinkedTreeMap<String, Object> last() throws IOException {
-        return this.client.get("blocks/first");
+        return this.client.get("blocks/last");
     }
 
     public LinkedTreeMap<String, Object> show(String id) throws IOException {
