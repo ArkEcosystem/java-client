@@ -1,10 +1,9 @@
 package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
 import java.util.Map;
+import org.arkecosystem.client.http.Client;
 
 public class Wallets {
     Client client;
@@ -44,5 +43,4 @@ public class Wallets {
     public LinkedTreeMap<String, Object> top() throws IOException {
         return this.client.get("wallets/top");
     }
-
 }
