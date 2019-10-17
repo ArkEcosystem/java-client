@@ -1,10 +1,8 @@
 package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
-import java.util.HashMap;
+import org.arkecosystem.client.http.Client;
 
 public class Node {
     private Client client;
@@ -36,5 +34,4 @@ public class Node {
     public LinkedTreeMap<String, Object> debug() throws IOException {
         return this.client.get("node/debug");
     }
-
 }

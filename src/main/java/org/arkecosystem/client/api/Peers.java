@@ -1,9 +1,8 @@
 package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
+import org.arkecosystem.client.http.Client;
 
 public class Peers {
     private Client client;
@@ -19,5 +18,4 @@ public class Peers {
     public LinkedTreeMap<String, Object> show(String ip) throws IOException {
         return this.client.get("peers/" + ip);
     }
-
 }

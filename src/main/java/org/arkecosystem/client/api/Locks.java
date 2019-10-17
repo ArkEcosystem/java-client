@@ -1,15 +1,14 @@
 package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
 import java.util.Map;
+import org.arkecosystem.client.http.Client;
 
 public class Locks {
     private Client client;
 
-    public Locks(Client client){
+    public Locks(Client client) {
         this.client = client;
     }
 
@@ -25,7 +24,8 @@ public class Locks {
         return this.client.post("locks/search", parameters);
     }
 
-    public LinkedTreeMap<String, Object> searchUnlocked(Map<String, Object> parameters) throws IOException {
+    public LinkedTreeMap<String, Object> searchUnlocked(Map<String, Object> parameters)
+            throws IOException {
         return this.client.post("locks/unlocked", parameters);
     }
 }

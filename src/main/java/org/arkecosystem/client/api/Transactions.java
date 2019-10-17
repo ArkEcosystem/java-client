@@ -1,12 +1,11 @@
 package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.arkecosystem.client.http.Client;
 
 public class Transactions {
     private Client client;
@@ -45,8 +44,11 @@ public class Transactions {
         return this.client.get("transactions/types");
     }
 
+    public LinkedTreeMap<String, Object> schemas() throws IOException {
+        return this.client.get("transactions/schemas");
+    }
+
     public LinkedTreeMap<String, Object> fees() throws IOException {
         return this.client.get("transactions/fees");
     }
-
 }

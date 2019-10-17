@@ -1,15 +1,14 @@
 package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
 import java.util.Map;
+import org.arkecosystem.client.http.Client;
 
 public class Bridgechains {
     private Client client;
 
-    public Bridgechains(Client client){
+    public Bridgechains(Client client) {
         this.client = client;
     }
 
@@ -24,5 +23,4 @@ public class Bridgechains {
     public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
         return this.client.post("bridgechains/search", parameters);
     }
-
 }
