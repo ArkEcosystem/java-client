@@ -2,6 +2,7 @@ package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
+import java.util.HashMap;
 import org.arkecosystem.client.http.Client;
 
 public class Node {
@@ -27,7 +28,9 @@ public class Node {
         return this.client.get("node/configuration/crypto");
     }
 
-    public LinkedTreeMap<String, Object> fees() throws IOException {
+    public LinkedTreeMap<String, Object> fees(Integer... days) throws IOException {
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("days", days.length > 0 ? days[0] : null);
         return this.client.get("node/fees");
     }
 
