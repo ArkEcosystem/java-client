@@ -20,6 +20,20 @@ public class BlocksTest {
     }
 
     @Test
+    void first() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().blocks.first();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
+    void last() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().blocks.last();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void show() throws IOException {
         Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().blocks.show("dummy");
