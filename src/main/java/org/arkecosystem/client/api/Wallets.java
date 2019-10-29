@@ -6,7 +6,7 @@ import java.util.Map;
 import org.arkecosystem.client.http.Client;
 
 public class Wallets {
-    Client client;
+    private Client client;
 
     public Wallets(Client client) {
         this.client = client;
@@ -14,6 +14,10 @@ public class Wallets {
 
     public LinkedTreeMap<String, Object> all() throws IOException {
         return this.client.get("wallets");
+    }
+
+    public LinkedTreeMap<String, Object> top() throws IOException {
+        return this.client.get("wallets/top");
     }
 
     public LinkedTreeMap<String, Object> show(String id) throws IOException {
@@ -36,11 +40,11 @@ public class Wallets {
         return this.client.get("wallets/" + id + "/votes");
     }
 
-    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("wallets/search", parameters);
+    public LinkedTreeMap<String, Object> locks(String id) throws IOException {
+        return this.client.get("wallets/" + id + "/locks");
     }
 
-    public LinkedTreeMap<String, Object> top() throws IOException {
-        return this.client.get("wallets/top");
+    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
+        return this.client.post("wallets/search", parameters);
     }
 }

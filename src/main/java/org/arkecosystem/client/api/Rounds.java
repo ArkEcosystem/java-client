@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.arkecosystem.client.http.Client;
 
 public class Rounds {
-    Client client;
+    private Client client;
 
     public Rounds(Client client) {
         this.client = client;

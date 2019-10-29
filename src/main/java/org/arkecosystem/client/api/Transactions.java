@@ -8,7 +8,7 @@ import java.util.Map;
 import org.arkecosystem.client.http.Client;
 
 public class Transactions {
-    Client client;
+    private Client client;
 
     public Transactions(Client client) {
         this.client = client;
@@ -42,6 +42,10 @@ public class Transactions {
 
     public LinkedTreeMap<String, Object> types() throws IOException {
         return this.client.get("transactions/types");
+    }
+
+    public LinkedTreeMap<String, Object> schemas() throws IOException {
+        return this.client.get("transactions/schemas");
     }
 
     public LinkedTreeMap<String, Object> fees() throws IOException {

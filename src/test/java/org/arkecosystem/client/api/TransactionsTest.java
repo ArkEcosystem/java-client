@@ -68,4 +68,11 @@ public class TransactionsTest {
         LinkedTreeMap<String, Object> actual = connection.api().transactions.fees();
         assertTrue((boolean) actual.get("success"));
     }
+
+    @Test
+    void schemas() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().transactions.schemas();
+        assertTrue((boolean) actual.get("success"));
+    }
 }

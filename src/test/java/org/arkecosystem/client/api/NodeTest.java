@@ -45,4 +45,11 @@ public class NodeTest {
         LinkedTreeMap<String, Object> actual = connection.api().node.crypto();
         assertTrue((boolean) actual.get("success"));
     }
+
+    @Test
+    void debug() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().node.debug();
+        assertTrue((boolean) actual.get("success"));
+    }
 }
