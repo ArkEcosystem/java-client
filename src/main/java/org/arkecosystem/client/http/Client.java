@@ -2,11 +2,10 @@ package org.arkecosystem.client.http;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class Client {
     private String host;
@@ -24,19 +23,24 @@ public class Client {
         this.headers = Headers.of(headers);
     }
 
-    public LinkedTreeMap<String, Object> get(String url, Map<String, Object> params) throws IOException {
+    public LinkedTreeMap<String, Object> get(String url, Map<String, Object> params)
+            throws IOException {
         HttpUrl.Builder httpBuilder = HttpUrl.parse(this.host + url).newBuilder();
 
         if (params != null) {
             for (Map.Entry<String, Object> entry : params.entrySet()) {
-                httpBuilder.addQueryParameter(entry.getKey(), entry.getValue().toString());
+                if (entry.getValue() != null) {
+                    httpBuilder.addQueryParameter(entry.getKey(), entry.getValue().toString());
+                }
             }
         }
 
-        Request request = new Request.Builder().headers(this.headers).url(httpBuilder.build()).build();
+        Request request =
+                new Request.Builder().headers(this.headers).url(httpBuilder.build()).build();
 
         Response response = client.newCall(request).execute();
-        return new Gson().fromJson(response.body().string(), new LinkedTreeMap<String, Object>().getClass());
+        return new Gson()
+                .fromJson(response.body().string(), new LinkedTreeMap<String, Object>().getClass());
     }
 
     public LinkedTreeMap<String, Object> get(String url) throws IOException {
@@ -47,7 +51,8 @@ public class Client {
         RequestBody body = RequestBody.create(JSON, new Gson().toJson(payload));
         Request request = new Request.Builder().url(this.host + url).post(body).build();
         Response response = client.newCall(request).execute();
-        return new Gson().fromJson(response.body().string(), new LinkedTreeMap<String, Object>().getClass());
+        return new Gson()
+                .fromJson(response.body().string(), new LinkedTreeMap<String, Object>().getClass());
     }
 
     public OkHttpClient getClient() {
@@ -57,5 +62,4 @@ public class Client {
     public void setClient(OkHttpClient client) {
         this.client = client;
     }
-
 }

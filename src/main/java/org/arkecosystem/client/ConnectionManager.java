@@ -64,5 +64,4 @@ public class ConnectionManager {
     public Connection connection() {
         return connection(null);
     }
-
 }

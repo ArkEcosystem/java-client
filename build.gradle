@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:3.27.1"
+    }
+}
+
 plugins {
     id 'java'
     id 'maven'
@@ -9,6 +15,7 @@ plugins {
 apply plugin:'java'
 apply plugin:'maven'
 apply plugin:'maven-publish'
+apply plugin: com.diffplug.gradle.spotless.SpotlessPlugin
 
 repositories {
     jcenter()
@@ -119,5 +126,19 @@ jacocoTestReport {
 }
 
 wrapper {
-    gradleVersion = '4.9'
+    gradleVersion = '5.6.2'
 }
+
+spotless {
+    java {
+        target fileTree(projectDir) {
+            include 'src/main/**/*.java'
+            exclude '**/build/**'
+        }
+        googleJavaFormat('1.1').aosp()
+    }
+}
+
+task formatCode(dependsOn: ['spotlessApply'])
+
+build.dependsOn 'spotlessApply'
