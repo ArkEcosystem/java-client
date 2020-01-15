@@ -13,7 +13,7 @@ public class Locks {
     }
 
     public LinkedTreeMap<String, Object> all() throws IOException {
-        return this.client.get("all");
+        return this.client.get("locks");
     }
 
     public LinkedTreeMap<String, Object> show(String id) throws IOException {
