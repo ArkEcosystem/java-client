@@ -6,35 +6,35 @@ import java.util.HashMap;
 import org.arkecosystem.client.http.Client;
 
 public class Node {
-    private Client client;
+  private Client client;
 
-    public Node(Client client) {
-        this.client = client;
-    }
+  public Node(Client client) {
+    this.client = client;
+  }
 
-    public LinkedTreeMap<String, Object> status() throws IOException {
-        return this.client.get("node/status");
-    }
+  public LinkedTreeMap<String, Object> status() throws IOException {
+    return this.client.get("node/status");
+  }
 
-    public LinkedTreeMap<String, Object> syncing() throws IOException {
-        return this.client.get("node/syncing");
-    }
+  public LinkedTreeMap<String, Object> syncing() throws IOException {
+    return this.client.get("node/syncing");
+  }
 
-    public LinkedTreeMap<String, Object> configuration() throws IOException {
-        return this.client.get("node/configuration");
-    }
+  public LinkedTreeMap<String, Object> configuration() throws IOException {
+    return this.client.get("node/configuration");
+  }
 
-    public LinkedTreeMap<String, Object> crypto() throws IOException {
-        return this.client.get("node/configuration/crypto");
-    }
+  public LinkedTreeMap<String, Object> crypto() throws IOException {
+    return this.client.get("node/configuration/crypto");
+  }
 
-    public LinkedTreeMap<String, Object> fees(Integer... days) throws IOException {
-        HashMap<String, Object> parameters = new HashMap<>();
-        parameters.put("days", days.length > 0 ? days[0] : null);
-        return this.client.get("node/fees");
-    }
+  public LinkedTreeMap<String, Object> fees(Integer... days) throws IOException {
+    HashMap<String, Object> parameters = new HashMap<>();
+    parameters.put("days", days.length > 0 ? days[0] : null);
+    return this.client.get("node/fees");
+  }
 
-    public LinkedTreeMap<String, Object> debug() throws IOException {
-        return this.client.get("node/debug");
-    }
+  public LinkedTreeMap<String, Object> debug() throws IOException {
+    return this.client.get("node/debug");
+  }
 }
