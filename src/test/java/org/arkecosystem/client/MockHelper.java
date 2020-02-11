@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class MockHelper {
     public static Connection connection() {
-        MockWebServer mockServer = new MockWebServer();
+        /* MockWebServer mockServer = new MockWebServer();
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", mockServer.url("/").toString());
@@ -19,6 +19,12 @@ public class MockHelper {
 
         mockServer.enqueue(mockedResponse);
 
+         */
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("host", "http://137.74.27.246:4003/api/");
+        map.put("content-type","application/json");
+        Connection connection = new Connection(map);
         return connection;
     }
 }
