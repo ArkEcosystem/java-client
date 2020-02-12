@@ -4,18 +4,15 @@ import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
 import org.arkecosystem.client.http.Client;
 
-public class Peers {
+public class Blockchain {
+
   private Client client;
 
-  public Peers(Client client) {
+  public Blockchain(Client client) {
     this.client = client;
   }
 
   public LinkedTreeMap<String, Object> all() throws IOException {
-    return this.client.get("peers");
-  }
-
-  public LinkedTreeMap<String, Object> show(String ip) throws IOException {
-    return this.client.get("peers/" + ip);
+    return this.client.get("blockchain");
   }
 }
