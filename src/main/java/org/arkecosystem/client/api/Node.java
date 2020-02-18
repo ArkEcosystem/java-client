@@ -31,7 +31,7 @@ public class Node {
     public LinkedTreeMap<String, Object> fees(Integer... days) throws IOException {
         HashMap<String, Object> parameters = new HashMap<>();
         parameters.put("days", days.length > 0 ? days[0] : null);
-        return this.client.get("node/fees");
+        return this.client.get("node/fees", parameters);
     }
 
     public LinkedTreeMap<String, Object> debug() throws IOException {
