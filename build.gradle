@@ -1,128 +1,41 @@
-buildscript {
-    dependencies {
-        classpath "com.diffplug.spotless:spotless-plugin-gradle:3.27.1"
-    }
-}
-
 plugins {
     id 'java'
-    id 'maven'
     id 'maven-publish'
-    id 'signing'
     id 'jacoco'
+    id 'com.diffplug.gradle.spotless' version '3.27.1'
 }
-
-apply plugin:'java'
-apply plugin:'maven'
-apply plugin:'maven-publish'
-apply plugin: com.diffplug.gradle.spotless.SpotlessPlugin
 
 repositories {
     jcenter()
     mavenCentral()
 }
 
-task fatJar(type: Jar) {
-    manifest.from jar.manifest
-    classifier = 'standalone'
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    } {
-        exclude "META-INF/*.SF"
-        exclude "META-INF/*.DSA"
-        exclude "META-INF/*.RSA"
-    }
-    with jar
-}
+group = 'org.arkecosystem'
+version = '1.0.1'
 
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "file://${buildDir}/repo") {}
-
-            //repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-             // authentication(userName: '', password: '')
-           // }
-
-          //  snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-          //      authentication(userName: ossrhUsername, password: ossrhPassword)
-          //  }
-
-            pom.project {
-                groupId = 'org.arkecosystem'
-                version = '1.0.0'
-                artifactId = 'client'
-
-                name = 'java-client'
-                description = 'A simple Java API client for the ARK Blockchain.'
-                url = 'https://github.com/ArkEcosystem/java-client'
-                inceptionYear = '2018'
-
-                licenses {
-                    license {
-                        name = 'MIT'
-                        distribution = 'repo'
-                    }
-                }
-
-                developers {
-                    developer {
-                        name = 'Brian Faust'
-                        email = 'brian@ark.io'
-                        organization = 'Ark Ecosystem'
-                        organizationUrl = 'https://ark.io'
-                    }
-                    developer {
-                        name = 'Joshua Noack'
-                        email = 'joshua@ark.io'
-                        organization = 'Ark Ecosystem'
-                        organizationUrl = 'https://ark.io'
-                    }
-                    developer {
-                        name = 'Kristjan Kosic'
-                        email = 'kristjan@ark.io'
-                        organization = 'Ark Ecosystem'
-                        organizationUrl = 'https://ark.io'
-                    }
-                    developer {
-                        name = 'Zan Kovac'
-                        email = 'zan@ark.io'
-                        organization = 'Ark Ecosystem'
-                        organizationUrl = 'https://ark.io'
-                    }
-                }
-
-                scm {
-                    connection = 'scm:git:git://github.com/ArkEcosystem/java-client.git'
-                    developerConnection = 'scm:git:ssh://github.com:ArkEcosystem/java-client.git'
-                    url = 'https://github.com/ArkEcosystem/java-client/tree/1.0.0'
+publishing {
+    publishing {
+        repositories {
+            maven {
+                name = "github"
+                url = uri("https://maven.pkg.github.com/arkecosystem/java-client")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
                 }
             }
         }
+        publications {
+            gpr(MavenPublication) {
+                from(components.java)
+            }
+        }
     }
-}
 
-if (project.hasProperty("signing.keyId")) {
-    apply plugin:'signing'
-
-    signing {
-        sign configurations.archives
+    javadoc {
+        if (JavaVersion.current().isJava9Compatible()) {
+            options.addBooleanOption('html5', true)
+        }
     }
 }
 
@@ -151,7 +64,7 @@ jacocoTestReport {
 }
 
 wrapper {
-    gradleVersion = '5.6.2'
+    gradleVersion = '6.2.0'
 }
 
 spotless {
@@ -160,12 +73,35 @@ spotless {
             include 'src/main/**/*.java'
             exclude '**/build/**'
         }
-        googleJavaFormat()
+        googleJavaFormat('1.1').aosp()
         removeUnusedImports()
 
     }
 }
 
 task formatCode(dependsOn: ['spotlessApply'])
+
+task fatJar(type: Jar) {
+    manifest.from jar.manifest
+    classifier = 'standalone'
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    with jar
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
 build.dependsOn 'spotlessApply'
