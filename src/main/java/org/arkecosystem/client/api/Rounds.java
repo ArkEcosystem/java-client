@@ -5,13 +5,13 @@ import java.io.IOException;
 import org.arkecosystem.client.http.Client;
 
 public class Rounds {
-  private Client client;
+    private Client client;
 
-  public Rounds(Client client) {
-    this.client = client;
-  }
+    public Rounds(Client client) {
+        this.client = client;
+    }
 
-  public LinkedTreeMap<String, Object> delegates(int id) throws IOException {
-    return this.client.get("rounds/" + id + "/delegates");
-  }
+    public LinkedTreeMap<String, Object> delegates(int id) throws IOException {
+        return this.client.get("rounds/" + id + "/delegates");
+    }
 }
