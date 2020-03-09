@@ -24,6 +24,11 @@ public class Businesses {
         return this.client.get("businesses/" + id + "/bridgechains");
     }
 
+    public LinkedTreeMap<String, Object> showBridgechain(String businessId, String bridgechainId)
+            throws IOException {
+        return this.client.get("businesses/" + businessId + "/bridgechains" + bridgechainId);
+    }
+
     public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
         return this.client.post("businesses/search", parameters);
     }
