@@ -34,6 +34,13 @@ public class BusinessesTest {
     }
 
     @Test
+    void showBridgechain() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().businesses.showBridgechain("dummy", "dummy");
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void search() throws IOException {
         Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().businesses.search(new HashMap<>());

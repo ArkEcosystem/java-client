@@ -16,10 +16,6 @@ public class Bridgechains {
         return this.client.get("bridgechains");
     }
 
-    public LinkedTreeMap<String, Object> show(String id) throws IOException {
-        return this.client.get("bridgechains/" + id);
-    }
-
     public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
         return this.client.post("bridgechains/search", parameters);
     }
