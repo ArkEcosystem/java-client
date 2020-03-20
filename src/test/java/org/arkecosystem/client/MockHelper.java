@@ -1,9 +1,8 @@
 package org.arkecosystem.client;
 
+import java.util.HashMap;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-
-import java.util.HashMap;
 
 public class MockHelper {
     public static Connection connection() {

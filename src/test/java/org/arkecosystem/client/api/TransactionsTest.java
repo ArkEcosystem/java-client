@@ -1,15 +1,14 @@
 package org.arkecosystem.client.api;
 
-import com.google.gson.internal.LinkedTreeMap;
-import org.arkecosystem.client.Connection;
-import org.arkecosystem.client.MockHelper;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.arkecosystem.client.Connection;
+import org.arkecosystem.client.MockHelper;
+import org.junit.jupiter.api.Test;
 
 public class TransactionsTest {
 
@@ -23,7 +22,8 @@ public class TransactionsTest {
     @Test
     void create() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().transactions.create(new ArrayList<>());
+        LinkedTreeMap<String, Object> actual =
+                connection.api().transactions.create(new ArrayList<>());
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -44,14 +44,16 @@ public class TransactionsTest {
     @Test
     void showUnconfirmed() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().transactions.showUnconfirmed("dummy");
+        LinkedTreeMap<String, Object> actual =
+                connection.api().transactions.showUnconfirmed("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void search() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().transactions.search(new HashMap<>());
+        LinkedTreeMap<String, Object> actual =
+                connection.api().transactions.search(new HashMap<>());
         assertTrue((boolean) actual.get("success"));
     }
 
