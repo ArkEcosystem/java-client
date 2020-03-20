@@ -134,6 +134,7 @@ spotless {
             exclude '**/build/**'
         }
         googleJavaFormat('1.1').aosp()
+        removeUnusedImports()
     }
 }
 
@@ -141,6 +142,7 @@ task formatCode(dependsOn: ['spotlessApply'])
 
 task fatJar(type: Jar) {
     manifest.from jar.manifest
+    classifier = 'standalone'
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     } {
