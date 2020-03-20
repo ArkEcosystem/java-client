@@ -43,11 +43,11 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-            // repository(url: "file://${buildDir}/repo") {}
+            repository(url: "file://${buildDir}/repo") {}
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-                authentication(userName: MVN_USERNAME, password: MVN_PASSWORD)
-            }
+            // repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+            //    authentication(userName: MVN_USERNAME, password: MVN_PASSWORD)
+            // }
 
             //   snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
             //      authentication(userName: MVN_USERNAME, password: MVN_PASSWORD)
