@@ -7,6 +7,9 @@ plugins {
     id 'com.diffplug.gradle.spotless' version '3.27.2'
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
     jcenter()
     mavenCentral()
@@ -43,16 +46,16 @@ uploadArchives {
             repository(url: "file://${buildDir}/repo") {}
 
             // repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-            //    authentication(userName: '', password: '')
-            //}
+            //    authentication(userName: MVN_USERNAME, password: MVN_PASSWORD)
+            // }
 
             //   snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-            //      authentication(userName: ossrhUsername, password: ossrhPassword)
+            //      authentication(userName: MVN_USERNAME, password: MVN_PASSWORD)
             //  }
 
             pom.project {
                 groupId = 'org.arkecosystem'
-                version = '1.2.8'
+                version = '1.2.9'
                 artifactId = 'client'
 
                 name = 'java-client'
