@@ -1,14 +1,13 @@
 package org.arkecosystem.client.api;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.google.gson.internal.LinkedTreeMap;
+import java.io.IOException;
+import java.util.HashMap;
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DelegatesTest {
 
@@ -46,5 +45,4 @@ public class DelegatesTest {
         LinkedTreeMap<String, Object> actual = connection.api().delegates.search(new HashMap<>());
         assertTrue((boolean) actual.get("success"));
     }
-
 }

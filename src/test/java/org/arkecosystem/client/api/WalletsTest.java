@@ -1,14 +1,13 @@
 package org.arkecosystem.client.api;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.google.gson.internal.LinkedTreeMap;
+import java.io.IOException;
+import java.util.HashMap;
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WalletsTest {
 
@@ -43,7 +42,8 @@ public class WalletsTest {
     @Test
     void receivedTransactions() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().wallets.receivedTransactions("dummy");
+        LinkedTreeMap<String, Object> actual =
+                connection.api().wallets.receivedTransactions("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -74,5 +74,4 @@ public class WalletsTest {
         LinkedTreeMap<String, Object> actual = connection.api().wallets.top();
         assertTrue((boolean) actual.get("success"));
     }
-
 }

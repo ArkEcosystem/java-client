@@ -1,12 +1,11 @@
 package org.arkecosystem.client;
 
-import org.arkecosystem.client.api.Api;
-import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.HashMap;
+import org.arkecosystem.client.api.Api;
+import org.junit.jupiter.api.Test;
 
 public class ConnectionManagerTest {
     @Test
