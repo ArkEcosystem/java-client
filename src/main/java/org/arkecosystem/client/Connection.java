@@ -16,4 +16,8 @@ public class Connection {
     public Api api() {
         return this.api;
     }
+
+    public Client client() {
+        return this.client;
+    }
 }
