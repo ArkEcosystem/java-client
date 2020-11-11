@@ -55,13 +55,6 @@ public class WalletsTest {
     }
 
     @Test
-    void search() throws IOException {
-        Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().wallets.search(new HashMap<>());
-        assertTrue((boolean) actual.get("success"));
-    }
-
-    @Test
     void locks() throws IOException {
         Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().wallets.locks("dummy");
