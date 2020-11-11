@@ -19,7 +19,7 @@ public class Transactions {
     }
 
     public LinkedTreeMap<String, Object> create(List<HashMap> transactions) throws IOException {
-        HashMap<String, List<HashMap>> params = new HashMap<>();
+        HashMap params = new HashMap<>();
         params.put("transactions", transactions);
         return this.client.post("transactions", params);
     }
