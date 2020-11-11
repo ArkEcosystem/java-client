@@ -17,7 +17,7 @@ class DotHelper {
         for (Map.Entry<String, Object> entry : params.entrySet()) {
             if (entry.getValue() instanceof Map) {
                 accum.putAll(toDot((Map<String, Object>) entry.getValue(), accum, prepend + entry.getKey() + "."));
-            } else {
+            } else if (entry.getValue() != null) {
                 accum.put(prepend + entry.getKey(), entry.getValue().toString());
             }
         }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class DotHelperTest {
 
@@ -23,6 +24,7 @@ class DotHelperTest {
                     put("level3", "value");
                 }});
             }});
+            put("nulls", null);
         }};
 
         Map<String, String> newMap = DotHelper.toDot(map);
@@ -32,5 +34,6 @@ class DotHelperTest {
         assertEquals("7 Michigan St", newMap.get("address.street"));
         assertEquals("Jersey", newMap.get("address.city"));
         assertEquals("value", newMap.get("level1.level2.level3"));
+        assertNull(newMap.get("nulls"));
     }
 }
