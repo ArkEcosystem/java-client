@@ -4,7 +4,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import org.arkecosystem.client.http.Client;
 
 public class Transactions {
