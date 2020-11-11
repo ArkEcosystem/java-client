@@ -2,7 +2,7 @@ package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
-import java.util.Map;
+
 import org.arkecosystem.client.http.Client;
 
 public class Wallets {
@@ -42,9 +42,5 @@ public class Wallets {
 
     public LinkedTreeMap<String, Object> locks(String id) throws IOException {
         return this.client.get("wallets/" + id + "/locks");
-    }
-
-    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("wallets/search", parameters);
     }
 }

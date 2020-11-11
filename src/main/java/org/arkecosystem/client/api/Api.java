@@ -6,8 +6,6 @@ public class Api {
 
     public Blockchain blockchain;
     public Blocks blocks;
-    public Bridgechains bridgechains;
-    public Businesses businesses;
     public Delegates delegates;
     public Locks locks;
     public Node node;
@@ -20,8 +18,6 @@ public class Api {
     public Api(Client client) {
         this.blockchain = new Blockchain(client);
         this.blocks = new Blocks(client);
-        this.bridgechains = new Bridgechains(client);
-        this.businesses = new Businesses(client);
         this.delegates = new Delegates(client);
         this.locks = new Locks(client);
         this.node = new Node(client);

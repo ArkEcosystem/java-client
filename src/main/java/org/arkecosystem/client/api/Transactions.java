@@ -4,7 +4,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import org.arkecosystem.client.http.Client;
 
 public class Transactions {
@@ -34,10 +34,6 @@ public class Transactions {
 
     public LinkedTreeMap<String, Object> showUnconfirmed(String id) throws IOException {
         return this.client.get("transactions/unconfirmed/" + id);
-    }
-
-    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("transactions/search", parameters);
     }
 
     public LinkedTreeMap<String, Object> types() throws IOException {

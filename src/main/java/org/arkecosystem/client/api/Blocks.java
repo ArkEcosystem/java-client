@@ -2,7 +2,7 @@ package org.arkecosystem.client.api;
 
 import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
-import java.util.Map;
+
 import org.arkecosystem.client.http.Client;
 
 public class Blocks {
@@ -30,9 +30,5 @@ public class Blocks {
 
     public LinkedTreeMap<String, Object> transactions(String id) throws IOException {
         return this.client.get("blocks/" + id + "/transactions");
-    }
-
-    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("blocks/search", parameters);
     }
 }
