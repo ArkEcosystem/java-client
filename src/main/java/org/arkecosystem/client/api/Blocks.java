@@ -31,8 +31,4 @@ public class Blocks {
     public LinkedTreeMap<String, Object> transactions(String id) throws IOException {
         return this.client.get("blocks/" + id + "/transactions");
     }
-
-    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("blocks/search", parameters);
-    }
 }
