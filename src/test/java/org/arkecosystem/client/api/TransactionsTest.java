@@ -50,14 +50,6 @@ public class TransactionsTest {
     }
 
     @Test
-    void search() throws IOException {
-        Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual =
-                connection.api().transactions.search(new HashMap<>());
-        assertTrue((boolean) actual.get("success"));
-    }
-
-    @Test
     void types() throws IOException {
         Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().transactions.types();

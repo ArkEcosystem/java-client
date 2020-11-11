@@ -36,10 +36,6 @@ public class Transactions {
         return this.client.get("transactions/unconfirmed/" + id);
     }
 
-    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("transactions/search", parameters);
-    }
-
     public LinkedTreeMap<String, Object> types() throws IOException {
         return this.client.get("transactions/types");
     }
