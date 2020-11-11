@@ -20,10 +20,6 @@ public class Locks {
         return this.client.get("locks/" + id);
     }
 
-    public LinkedTreeMap<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("locks/search", parameters);
-    }
-
     public LinkedTreeMap<String, Object> searchUnlocked(Map<String, Object> parameters)
             throws IOException {
         return this.client.post("locks/unlocked", parameters);

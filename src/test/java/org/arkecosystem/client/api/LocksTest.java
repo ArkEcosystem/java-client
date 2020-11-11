@@ -26,13 +26,6 @@ public class LocksTest {
     }
 
     @Test
-    void search() throws IOException {
-        Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().locks.search(new HashMap<>());
-        assertTrue((boolean) actual.get("success"));
-    }
-
-    @Test
     void searchUnlocked() throws IOException {
         Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual =
