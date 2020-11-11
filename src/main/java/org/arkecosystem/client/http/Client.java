@@ -8,10 +8,10 @@ import java.util.Map;
 import okhttp3.*;
 
 public class Client {
-    private String host;
+    private final String host;
     private OkHttpClient client;
-    private Headers headers;
-    private MediaType JSON = MediaType.parse("application/json");
+    private final Headers headers;
+    private final MediaType JSON = MediaType.parse("application/json");
 
     public Client(String host) {
         this.host = host;
@@ -27,11 +27,9 @@ public class Client {
             throws IOException {
         HttpUrl.Builder httpBuilder = HttpUrl.parse(this.host + url).newBuilder();
 
-        if (params != null) {
-            for (Map.Entry<String, Object> entry : params.entrySet()) {
-                if (entry.getValue() != null) {
-                    httpBuilder.addQueryParameter(entry.getKey(), entry.getValue().toString());
-                }
+        for (Map.Entry<String, String> entry : DotHelper.toDot(params).entrySet()) {
+            if (entry.getValue() != null) {
+                httpBuilder.addQueryParameter(entry.getKey(), entry.getValue().toString());
             }
         }
 
