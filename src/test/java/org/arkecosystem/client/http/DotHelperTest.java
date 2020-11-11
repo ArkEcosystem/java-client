@@ -28,7 +28,7 @@ class DotHelperTest {
         }};
 
         Map<String, String> newMap = DotHelper.toDot(map);
-        System.out.println(newMap);
+
         assertEquals("query", newMap.get("q"));
         assertEquals("4", newMap.get("number"));
         assertEquals("7 Michigan St", newMap.get("address.street"));
