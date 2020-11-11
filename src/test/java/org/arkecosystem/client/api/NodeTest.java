@@ -11,6 +11,13 @@ import org.junit.jupiter.api.Test;
 public class NodeTest {
 
     @Test
+    void feesWithDays() throws IOException {
+        Connection connection = MockHelper.connection();
+        LinkedTreeMap<String, Object> actual = connection.api().node.fees(1);
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void fees() throws IOException {
         Connection connection = MockHelper.connection();
         LinkedTreeMap<String, Object> actual = connection.api().node.fees();

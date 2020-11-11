@@ -28,9 +28,15 @@ public class Node {
         return this.client.get("node/configuration/crypto");
     }
 
-    public LinkedTreeMap<String, Object> fees(Integer... days) throws IOException {
+    public LinkedTreeMap<String, Object> fees(int days) throws IOException {
         HashMap<String, Object> parameters = new HashMap<>();
-        parameters.put("days", days.length > 0 ? days[0] : null);
+        parameters.put("days", days);
+        return this.client.get("node/fees", parameters);
+    }
+
+    public LinkedTreeMap<String, Object> fees() throws IOException {
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("days", null);
         return this.client.get("node/fees", parameters);
     }
 
