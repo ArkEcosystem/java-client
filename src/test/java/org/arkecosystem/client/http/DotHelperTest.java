@@ -12,10 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class DotHelperTest {
 
     @Test
-    void toDot() {
+    void hierarchiesToDot() {
         Map<String, Object> map = new HashMap<String, Object>() {{
-            put("q", "query");
-            put("number", 4);
             put("address", new HashMap<String, Object>() {{
                 put("street", "7 Michigan St");
                 put("city", "Jersey");
@@ -30,12 +28,42 @@ class DotHelperTest {
 
         Map<String, String> newMap = DotHelper.toDot(map);
 
-        assertEquals("query", newMap.get("q"));
-        assertEquals("4", newMap.get("number"));
         assertEquals("7 Michigan St", newMap.get("address.street"));
         assertEquals("Jersey", newMap.get("address.city"));
         assertEquals("value", newMap.get("level1.level2.level3"));
+    }
+
+    @Test
+    void nullValueToDot() {
+        Map<String, Object> map = new HashMap<String, Object>() {{
+            put("nulls", null);
+        }};
+
+        Map<String, String> newMap = DotHelper.toDot(map);
+
         assertNull(newMap.get("nulls"));
+    }
+
+    @Test
+    void stringValueToDot() {
+        Map<String, Object> map = new HashMap<String, Object>() {{
+            put("q", "query");
+        }};
+
+        Map<String, String> newMap = DotHelper.toDot(map);
+
+        assertEquals("query", newMap.get("q"));
+    }
+
+    @Test
+    void integerValueToDot() {
+        Map<String, Object> map = new HashMap<String, Object>() {{
+            put("number", 4);
+        }};
+
+        Map<String, String> newMap = DotHelper.toDot(map);
+
+        assertEquals("4", newMap.get("number"));
     }
 
     @Test
@@ -54,12 +82,11 @@ class DotHelperTest {
         }};
 
         Map<String, String> newMap = DotHelper.toDot(map);
-        System.out.println(newMap);
+
         assertEquals("7 Michigan St", newMap.get("addresses.0.street"));
         assertEquals("Jersey", newMap.get("addresses.0.city"));
 
         assertEquals("29A Harold Ln", newMap.get("addresses.1.street"));
         assertEquals("Manhattan", newMap.get("addresses.1.city"));
-
     }
 }
