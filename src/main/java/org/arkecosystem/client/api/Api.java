@@ -4,21 +4,23 @@ import org.arkecosystem.client.http.Client;
 
 public class Api {
 
-    public Blockchain blockchain;
-    public Blocks blocks;
-    public Delegates delegates;
-    public Locks locks;
-    public Node node;
-    public Peers peers;
-    public Rounds rounds;
-    public Transactions transactions;
-    public Votes votes;
-    public Wallets wallets;
+    public final Blockchain blockchain;
+    public final Blocks blocks;
+    public final Delegates delegates;
+    public final Entities entities;
+    public final Locks locks;
+    public final Node node;
+    public final Peers peers;
+    public final Rounds rounds;
+    public final Transactions transactions;
+    public final Votes votes;
+    public final Wallets wallets;
 
     public Api(Client client) {
         this.blockchain = new Blockchain(client);
         this.blocks = new Blocks(client);
         this.delegates = new Delegates(client);
+        this.entities = new Entities(client);
         this.locks = new Locks(client);
         this.node = new Node(client);
         this.peers = new Peers(client);
