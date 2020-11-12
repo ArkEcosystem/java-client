@@ -20,6 +20,16 @@ public class TransactionsTest {
     }
 
     @Test
+    void allWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().transactions
+            .param("page", 1)
+            .param("limit", 100)
+            .all();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void create() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().transactions.create(new ArrayList<>());
@@ -37,6 +47,15 @@ public class TransactionsTest {
     void allUnconfirmed() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().transactions.allUnconfirmed();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
+    void allUnconfirmedWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().transactions
+            .param("page", 1)
+            .allUnconfirmed();
         assertTrue((boolean) actual.get("success"));
     }
 
