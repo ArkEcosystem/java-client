@@ -5,8 +5,8 @@ import org.arkecosystem.client.api.Api;
 import org.arkecosystem.client.http.Client;
 
 public class Connection {
-    private Api api;
-    private Client client;
+    private final Api api;
+    private final Client client;
 
     public Connection(Map<String, Object> config) {
         this.client = new Client(config.get("host").toString());

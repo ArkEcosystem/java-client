@@ -1,50 +1,50 @@
 package org.arkecosystem.client.api;
 
-import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.arkecosystem.client.http.Client;
 
 public class Transactions {
-    private Client client;
+    private final Client client;
 
     public Transactions(Client client) {
         this.client = client;
     }
 
-    public LinkedTreeMap<String, Object> all() throws IOException {
+    public Map<String, Object> all() throws IOException {
         return this.client.get("transactions");
     }
 
-    public LinkedTreeMap<String, Object> create(List<HashMap> transactions) throws IOException {
-        HashMap params = new HashMap<>();
+    public Map<String, Object> create(List<Map<String, ?>> transactions) throws IOException {
+        Map<String, Object> params = new HashMap<>();
         params.put("transactions", transactions);
         return this.client.post("transactions", params);
     }
 
-    public LinkedTreeMap<String, Object> show(String id) throws IOException {
+    public Map<String, Object> show(String id) throws IOException {
         return this.client.get("transactions/" + id);
     }
 
-    public LinkedTreeMap<String, Object> allUnconfirmed() throws IOException {
+    public Map<String, Object> allUnconfirmed() throws IOException {
         return this.client.get("transactions/unconfirmed");
     }
 
-    public LinkedTreeMap<String, Object> showUnconfirmed(String id) throws IOException {
+    public Map<String, Object> showUnconfirmed(String id) throws IOException {
         return this.client.get("transactions/unconfirmed/" + id);
     }
 
-    public LinkedTreeMap<String, Object> types() throws IOException {
+    public Map<String, Object> types() throws IOException {
         return this.client.get("transactions/types");
     }
 
-    public LinkedTreeMap<String, Object> schemas() throws IOException {
+    public Map<String, Object> schemas() throws IOException {
         return this.client.get("transactions/schemas");
     }
 
-    public LinkedTreeMap<String, Object> fees() throws IOException {
+    public Map<String, Object> fees() throws IOException {
         return this.client.get("transactions/fees");
     }
 }
