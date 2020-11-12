@@ -20,6 +20,16 @@ public class LocksTest {
     }
 
     @Test
+    void allWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().locks
+            .param("page", 1)
+            .param("limit", 100)
+            .all();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void show() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().locks.show("dummy");
@@ -31,6 +41,16 @@ public class LocksTest {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual =
                 connection.api().locks.searchUnlocked(new HashMap<>());
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
+    void searchUnlockedWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual =
+                connection.api().locks
+                    .param("page", 1)
+                    .searchUnlocked();
         assertTrue((boolean) actual.get("success"));
     }
 }

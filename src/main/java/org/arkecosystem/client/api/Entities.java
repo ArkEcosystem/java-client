@@ -28,5 +28,4 @@ public class Entities implements SupportsParams<Entities>  {
     public Map<String, Object> show(String id) throws IOException {
         return this.client.get("entities/" + id);
     }
-
 }
