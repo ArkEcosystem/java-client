@@ -19,6 +19,16 @@ public class BlocksTest {
     }
 
     @Test
+    void allWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().blocks
+            .param("page", 1)
+            .param("limit", 100)
+            .all();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void first() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().blocks.first();
@@ -43,6 +53,16 @@ public class BlocksTest {
     void transactions() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().blocks.transactions("dummy");
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
+    void transactionsWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().blocks
+            .param("page", 1)
+            .param("limit", 100)
+            .transactions("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 }

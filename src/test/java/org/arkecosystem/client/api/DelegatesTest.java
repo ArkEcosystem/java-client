@@ -20,6 +20,16 @@ public class DelegatesTest {
     }
 
     @Test
+    void allWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().delegates
+            .param("page", 1)
+            .param("limit", 100)
+            .all();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void show() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().delegates.show("dummy");
@@ -41,9 +51,29 @@ public class DelegatesTest {
     }
 
     @Test
+    void votersWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().delegates
+            .param("page", 1)
+            .param("limit", 100)
+            .voters("dummy");
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void search() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().delegates.search(new HashMap<>());
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
+    void searchWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().delegates
+            .param("page", 1)
+            .param("limit", 100)
+            .search();
         assertTrue((boolean) actual.get("success"));
     }
 }

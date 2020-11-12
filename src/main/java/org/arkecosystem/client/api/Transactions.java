@@ -2,20 +2,29 @@ package org.arkecosystem.client.api;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.arkecosystem.client.http.Client;
 
-public class Transactions {
+public class Transactions implements SupportsParams<Transactions> {
     private final Client client;
+
+    private final Map<String, Object> params = new LinkedHashMap<>();
 
     public Transactions(Client client) {
         this.client = client;
     }
 
+    @Override
+    public Transactions param(String name, Object value) {
+        params.put(name, value);
+        return this;
+    }
+
     public Map<String, Object> all() throws IOException {
-        return this.client.get("transactions");
+        return this.client.get("transactions", params);
     }
 
     public Map<String, Object> create(List<Map<String, ?>> transactions) throws IOException {
@@ -29,7 +38,7 @@ public class Transactions {
     }
 
     public Map<String, Object> allUnconfirmed() throws IOException {
-        return this.client.get("transactions/unconfirmed");
+        return this.client.get("transactions/unconfirmed", params);
     }
 
     public Map<String, Object> showUnconfirmed(String id) throws IOException {

@@ -19,6 +19,16 @@ public class VotesTest {
     }
 
     @Test
+    void allWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().votes
+            .param("page", 1)
+            .param("limit", 100)
+            .all();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void show() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().votes.show("dummy");
