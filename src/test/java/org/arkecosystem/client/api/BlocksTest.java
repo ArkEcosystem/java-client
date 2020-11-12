@@ -19,6 +19,23 @@ public class BlocksTest {
     }
 
     @Test
+    void allWithParams() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().blocks.all(1, 100, null, null);
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
+    void allWithQueryBuilder() throws IOException {
+        Connection connection = MockHelper.connection();
+        Map<String, Object> actual = connection.api().blocks.allQuery()
+            .add("page", 1)
+            .add("limit", 100)
+            .get();
+        assertTrue((boolean) actual.get("success"));
+    }
+
+    @Test
     void first() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().blocks.first();
