@@ -2,9 +2,10 @@ package org.arkecosystem.client.api;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.google.gson.internal.LinkedTreeMap;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
@@ -14,35 +15,35 @@ public class DelegatesTest {
     @Test
     void all() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().delegates.all();
+        Map<String, Object> actual = connection.api().delegates.all();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void show() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().delegates.show("dummy");
+        Map<String, Object> actual = connection.api().delegates.show("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void blocks() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().delegates.blocks("dummy");
+        Map<String, Object> actual = connection.api().delegates.blocks("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void voters() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().delegates.voters("dummy");
+        Map<String, Object> actual = connection.api().delegates.voters("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void search() throws IOException {
         Connection connection = MockHelper.connection();
-        LinkedTreeMap<String, Object> actual = connection.api().delegates.search(new HashMap<>());
+        Map<String, Object> actual = connection.api().delegates.search(new HashMap<>());
         assertTrue((boolean) actual.get("success"));
     }
 }

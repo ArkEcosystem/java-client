@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConnectionManager {
-    private Map<String, Connection> connections;
+    private final Map<String, Connection> connections;
     private String defaultConnection = "main";
 
     public ConnectionManager() {
@@ -23,7 +23,7 @@ public class ConnectionManager {
         return this.connections;
     }
 
-    public Connection connect(Map config, String name) {
+    public Connection connect(Map<String, Object> config, String name) {
         if (this.connections.containsKey(name)) {
             throw new IllegalArgumentException("Connection [" + name + "] is already configured.");
         }
@@ -33,7 +33,7 @@ public class ConnectionManager {
         return this.connections.get(name);
     }
 
-    public Connection connect(Map config) {
+    public Connection connect(Map<String, Object> config) {
         return connect(config, "main");
     }
 
