@@ -6,7 +6,7 @@
 
 > A simple Java API client for the Ark Blockchain.
 
-[![Build Status](https://badgen.now.sh/circleci/github/ArkEcosystem/java-client)](https://circleci.com/gh/ArkEcosystem/java-client)
+[![Build Status](https://badgen.net/github/status/ArkEcosystem/java-client)](https://github.com/ArkEcosystem/java-client/actions/)
 [![Codecov](https://badgen.now.sh/codecov/c/github/arkecosystem/java-client)](https://codecov.io/gh/arkecosystem/java-client)
 [![Latest Version](https://badgen.now.sh/github/release/ArkEcosystem/java-client)](https://github.com/ArkEcosystem/java-client/releases)
 [![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](https://opensource.org/licenses/MIT)
