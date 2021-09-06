@@ -14,8 +14,10 @@ import org.arkecosystem.client.ConnectionManager;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.experimental.categories.Category;
 
-public class IntegrationTest {
+@Category(IntegrationTest.class)
+public class TransactionsTest {
 
     private Connection connection;
 
