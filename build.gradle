@@ -159,5 +159,5 @@ task fatJar(type: Jar) {
 build.dependsOn 'spotlessApply'
 
 wrapper {
-    gradleVersion = '6.2.0'
+    gradleVersion = '7.2.0'
 }
