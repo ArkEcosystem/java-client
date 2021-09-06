@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
@@ -22,10 +21,8 @@ public class TransactionsTest {
     @Test
     void allWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().transactions
-            .param("page", 1)
-            .param("limit", 100)
-            .all();
+        Map<String, Object> actual =
+                connection.api().transactions.param("page", 1).param("limit", 100).all();
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -53,17 +50,15 @@ public class TransactionsTest {
     @Test
     void allUnconfirmedWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().transactions
-            .param("page", 1)
-            .allUnconfirmed();
+        Map<String, Object> actual =
+                connection.api().transactions.param("page", 1).allUnconfirmed();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void showUnconfirmed() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual =
-                connection.api().transactions.showUnconfirmed("dummy");
+        Map<String, Object> actual = connection.api().transactions.showUnconfirmed("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
@@ -22,10 +21,8 @@ public class DelegatesTest {
     @Test
     void allWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().delegates
-            .param("page", 1)
-            .param("limit", 100)
-            .all();
+        Map<String, Object> actual =
+                connection.api().delegates.param("page", 1).param("limit", 100).all();
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -53,10 +50,8 @@ public class DelegatesTest {
     @Test
     void votersWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().delegates
-            .param("page", 1)
-            .param("limit", 100)
-            .voters("dummy");
+        Map<String, Object> actual =
+                connection.api().delegates.param("page", 1).param("limit", 100).voters("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -70,10 +65,8 @@ public class DelegatesTest {
     @Test
     void searchWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().delegates
-            .param("page", 1)
-            .param("limit", 100)
-            .search();
+        Map<String, Object> actual =
+                connection.api().delegates.param("page", 1).param("limit", 100).search();
         assertTrue((boolean) actual.get("success"));
     }
 }

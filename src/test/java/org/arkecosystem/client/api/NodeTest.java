@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Map;
-
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;

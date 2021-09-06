@@ -23,8 +23,7 @@ public class Client {
         this.headers = Headers.of(headers);
     }
 
-    public Map<String, Object> get(String url, Map<String, Object> params)
-            throws IOException {
+    public Map<String, Object> get(String url, Map<String, Object> params) throws IOException {
         HttpUrl.Builder httpBuilder = HttpUrl.parse(this.host + url).newBuilder();
 
         for (Map.Entry<String, String> entry : DotHelper.toDot(params).entrySet()) {
@@ -37,8 +36,7 @@ public class Client {
                 new Request.Builder().headers(this.headers).url(httpBuilder.build()).build();
 
         Response response = client.newCall(request).execute();
-        return new Gson()
-                .fromJson(response.body().string(), Map.class);
+        return new Gson().fromJson(response.body().string(), Map.class);
     }
 
     public Map<String, Object> get(String url) throws IOException {
@@ -49,8 +47,7 @@ public class Client {
         RequestBody body = RequestBody.create(JSON, new Gson().toJson(payload));
         Request request = new Request.Builder().url(this.host + url).post(body).build();
         Response response = client.newCall(request).execute();
-        return new Gson()
-                .fromJson(response.body().string(), Map.class);
+        return new Gson().fromJson(response.body().string(), Map.class);
     }
 
     public OkHttpClient getClient() {

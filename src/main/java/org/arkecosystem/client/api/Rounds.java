@@ -2,7 +2,6 @@ package org.arkecosystem.client.api;
 
 import java.io.IOException;
 import java.util.Map;
-
 import org.arkecosystem.client.http.Client;
 
 public class Rounds {
