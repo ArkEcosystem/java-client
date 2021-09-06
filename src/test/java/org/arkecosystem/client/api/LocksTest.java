@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
@@ -22,10 +21,8 @@ public class LocksTest {
     @Test
     void allWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().locks
-            .param("page", 1)
-            .param("limit", 100)
-            .all();
+        Map<String, Object> actual =
+                connection.api().locks.param("page", 1).param("limit", 100).all();
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -39,18 +36,14 @@ public class LocksTest {
     @Test
     void searchUnlocked() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual =
-                connection.api().locks.searchUnlocked(new HashMap<>());
+        Map<String, Object> actual = connection.api().locks.searchUnlocked(new HashMap<>());
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void searchUnlockedWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual =
-                connection.api().locks
-                    .param("page", 1)
-                    .searchUnlocked();
+        Map<String, Object> actual = connection.api().locks.param("page", 1).searchUnlocked();
         assertTrue((boolean) actual.get("success"));
     }
 }

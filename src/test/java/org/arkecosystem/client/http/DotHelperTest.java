@@ -1,30 +1,44 @@
 package org.arkecosystem.client.http;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
 
 class DotHelperTest {
 
     @Test
     void hierarchiesToDot() {
-        Map<String, Object> map = new HashMap<String, Object>() {{
-            put("address", new HashMap<String, Object>() {{
-                put("street", "7 Michigan St");
-                put("city", "Jersey");
-            }});
-            put("level1", new HashMap<String, Object>() {{
-                put("level2", new HashMap<String, Object>() {{
-                    put("level3", "value");
-                }});
-            }});
-            put("nulls", null);
-        }};
+        Map<String, Object> map =
+                new HashMap<String, Object>() {
+                    {
+                        put(
+                                "address",
+                                new HashMap<String, Object>() {
+                                    {
+                                        put("street", "7 Michigan St");
+                                        put("city", "Jersey");
+                                    }
+                                });
+                        put(
+                                "level1",
+                                new HashMap<String, Object>() {
+                                    {
+                                        put(
+                                                "level2",
+                                                new HashMap<String, Object>() {
+                                                    {
+                                                        put("level3", "value");
+                                                    }
+                                                });
+                                    }
+                                });
+                        put("nulls", null);
+                    }
+                };
 
         Map<String, String> newMap = DotHelper.toDot(map);
 
@@ -35,9 +49,12 @@ class DotHelperTest {
 
     @Test
     void nullValueToDot() {
-        Map<String, Object> map = new HashMap<String, Object>() {{
-            put("nulls", null);
-        }};
+        Map<String, Object> map =
+                new HashMap<String, Object>() {
+                    {
+                        put("nulls", null);
+                    }
+                };
 
         Map<String, String> newMap = DotHelper.toDot(map);
 
@@ -46,9 +63,12 @@ class DotHelperTest {
 
     @Test
     void stringValueToDot() {
-        Map<String, Object> map = new HashMap<String, Object>() {{
-            put("q", "query");
-        }};
+        Map<String, Object> map =
+                new HashMap<String, Object>() {
+                    {
+                        put("q", "query");
+                    }
+                };
 
         Map<String, String> newMap = DotHelper.toDot(map);
 
@@ -57,9 +77,12 @@ class DotHelperTest {
 
     @Test
     void integerValueToDot() {
-        Map<String, Object> map = new HashMap<String, Object>() {{
-            put("number", 4);
-        }};
+        Map<String, Object> map =
+                new HashMap<String, Object>() {
+                    {
+                        put("number", 4);
+                    }
+                };
 
         Map<String, String> newMap = DotHelper.toDot(map);
 
@@ -68,18 +91,31 @@ class DotHelperTest {
 
     @Test
     void listToDot() {
-        Map<String, Object> map = new HashMap<String, Object>() {{
-            put("addresses", new ArrayList<Object>() {{
-                add(new HashMap<String, Object>() {{
-                    put("street", "7 Michigan St");
-                    put("city", "Jersey");
-                }});
-                add(new HashMap<String, Object>() {{
-                    put("street", "29A Harold Ln");
-                    put("city", "Manhattan");
-                }});
-            }});
-        }};
+        Map<String, Object> map =
+                new HashMap<String, Object>() {
+                    {
+                        put(
+                                "addresses",
+                                new ArrayList<Object>() {
+                                    {
+                                        add(
+                                                new HashMap<String, Object>() {
+                                                    {
+                                                        put("street", "7 Michigan St");
+                                                        put("city", "Jersey");
+                                                    }
+                                                });
+                                        add(
+                                                new HashMap<String, Object>() {
+                                                    {
+                                                        put("street", "29A Harold Ln");
+                                                        put("city", "Manhattan");
+                                                    }
+                                                });
+                                    }
+                                });
+                    }
+                };
 
         Map<String, String> newMap = DotHelper.toDot(map);
 

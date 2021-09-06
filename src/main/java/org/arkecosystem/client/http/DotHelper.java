@@ -14,12 +14,18 @@ class DotHelper {
     }
 
     @SuppressWarnings("unchecked")
-    private static Map<String, String> toDot(Map<String, Object> params, Map<String, String> accum, String prepend) {
+    private static Map<String, String> toDot(
+            Map<String, Object> params, Map<String, String> accum, String prepend) {
         for (Map.Entry<String, Object> entry : params.entrySet()) {
             if (entry.getValue() instanceof Map) {
-                accum.putAll(toDot((Map<String, Object>) entry.getValue(), accum, prepend + entry.getKey() + "."));
+                accum.putAll(
+                        toDot(
+                                (Map<String, Object>) entry.getValue(),
+                                accum,
+                                prepend + entry.getKey() + "."));
             } else if (entry.getValue() instanceof List) {
-                Map<String, Object> stringObjectMap = listAsMapWithNumericKeys((List<?>) entry.getValue());
+                Map<String, Object> stringObjectMap =
+                        listAsMapWithNumericKeys((List<?>) entry.getValue());
                 toDot(stringObjectMap, accum, prepend + entry.getKey() + ".");
             } else if (entry.getValue() != null) {
                 accum.put(prepend + entry.getKey(), entry.getValue().toString());

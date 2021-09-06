@@ -3,7 +3,6 @@ package org.arkecosystem.client.api;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.arkecosystem.client.http.Client;
 
 public class Node {

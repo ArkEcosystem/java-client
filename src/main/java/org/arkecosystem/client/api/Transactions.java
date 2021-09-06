@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.arkecosystem.client.http.Client;
 
 public class Transactions implements SupportsParams<Transactions> {

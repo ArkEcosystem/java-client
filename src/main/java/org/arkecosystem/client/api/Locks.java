@@ -32,8 +32,7 @@ public class Locks implements SupportsParams<Locks> {
         return this.client.post("locks/unlocked", params);
     }
 
-    public Map<String, Object> searchUnlocked(Map<String, Object> parameters)
-            throws IOException {
+    public Map<String, Object> searchUnlocked(Map<String, Object> parameters) throws IOException {
         return this.client.post("locks/unlocked", parameters);
     }
 }

@@ -3,7 +3,6 @@ package org.arkecosystem.client.api;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import org.arkecosystem.client.http.Client;
 
 public class Votes implements SupportsParams<Votes> {

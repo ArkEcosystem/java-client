@@ -1,12 +1,11 @@
 package org.arkecosystem.client.api;
 
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.arkecosystem.client.http.Client;
 
-public class Entities implements SupportsParams<Entities>  {
+public class Entities implements SupportsParams<Entities> {
     private final Client client;
 
     private final Map<String, Object> params = new LinkedHashMap<>();

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Map;
-
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
@@ -21,10 +20,8 @@ public class WalletsTest {
     @Test
     void allWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().wallets
-            .param("page", 1)
-            .param("limit", 100)
-            .all();
+        Map<String, Object> actual =
+                connection.api().wallets.param("page", 1).param("limit", 100).all();
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -45,9 +42,8 @@ public class WalletsTest {
     @Test
     void transactionsWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().wallets
-            .param("page", 1)
-            .transactions("dummy");
+        Map<String, Object> actual =
+                connection.api().wallets.param("page", 1).transactions("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -61,26 +57,23 @@ public class WalletsTest {
     @Test
     void sentTransactionsWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().wallets
-            .param("page", 1)
-            .sentTransactions("dummy");
+        Map<String, Object> actual =
+                connection.api().wallets.param("page", 1).sentTransactions("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void receivedTransactions() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual =
-                connection.api().wallets.receivedTransactions("dummy");
+        Map<String, Object> actual = connection.api().wallets.receivedTransactions("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void receivedTransactionsWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().wallets
-            .param("page", 1)
-            .receivedTransactions("dummy");
+        Map<String, Object> actual =
+                connection.api().wallets.param("page", 1).receivedTransactions("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -94,9 +87,7 @@ public class WalletsTest {
     @Test
     void votesWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().wallets
-            .param("page", 1)
-            .votes("dummy");
+        Map<String, Object> actual = connection.api().wallets.param("page", 1).votes("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 
@@ -117,9 +108,7 @@ public class WalletsTest {
     @Test
     void topWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().wallets
-            .param("page", 1)
-            .top();
+        Map<String, Object> actual = connection.api().wallets.param("page", 1).top();
         assertTrue((boolean) actual.get("success"));
     }
 }
