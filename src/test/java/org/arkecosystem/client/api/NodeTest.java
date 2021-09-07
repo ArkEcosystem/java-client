@@ -1,12 +1,13 @@
 package org.arkecosystem.client.api;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
-import java.util.Map;
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NodeTest {
 
@@ -49,13 +50,6 @@ public class NodeTest {
     void crypto() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().node.crypto();
-        assertTrue((boolean) actual.get("success"));
-    }
-
-    @Test
-    void debug() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().node.debug();
         assertTrue((boolean) actual.get("success"));
     }
 }

@@ -1,9 +1,10 @@
 package org.arkecosystem.client.api;
 
+import org.arkecosystem.client.http.Client;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import org.arkecosystem.client.http.Client;
 
 public class Node {
     private final Client client;
@@ -38,9 +39,5 @@ public class Node {
         HashMap<String, Object> parameters = new HashMap<>();
         parameters.put("days", null);
         return this.client.get("node/fees", parameters);
-    }
-
-    public Map<String, Object> debug() throws IOException {
-        return this.client.get("node/debug");
     }
 }

@@ -15,7 +15,6 @@ public class LocksTest extends BaseClientTest {
     @Test
     void all() throws IOException {
         Map<String, Object> actual = connection.api().locks.all();
-        System.out.println(actual);
         assertThat(actual, hasKey("meta"));
         assertThat(actual, hasKey("data"));
     }
@@ -32,7 +31,6 @@ public class LocksTest extends BaseClientTest {
     @Test
     void show() throws IOException {
         Map<String, Object> actual = connection.api().locks.show("d8e7491055f5b34c0c954da9d4e184f1bdef3fbfe3dfc81d312c81899fbfc74d");
-        System.out.println(actual);
         assertThat(actual, hasKey("data"));
         assertThat((Map<String, ?>) actual.get("data"), hasEntry("lockId", "d8e7491055f5b34c0c954da9d4e184f1bdef3fbfe3dfc81d312c81899fbfc74d"));
     }
@@ -40,7 +38,6 @@ public class LocksTest extends BaseClientTest {
     @Test
     void searchUnlocked() throws IOException {
         Map<String, Object> actual = connection.api().locks.searchUnlocked(Collections.singletonMap("ids", Collections.singletonList("d8e7491055f5b34c0c954da9d4e184f1bdef3fbfe3dfc81d312c81899fbfc74d")));
-        System.out.println(actual);
         assertThat(actual, hasKey("meta"));
         assertThat(actual, hasKey("data"));
         assertThat((Map<String, ?>) actual.get("meta"), hasEntry("count", 0.0));
@@ -49,7 +46,6 @@ public class LocksTest extends BaseClientTest {
     @Test
     void searchUnlockedWithParams() throws IOException {
         Map<String, Object> actual = connection.api().locks.param("ids", Collections.singletonList("d8e7491055f5b34c0c954da9d4e184f1bdef3fbfe3dfc81d312c81899fbfc74d")).searchUnlocked();
-        System.out.println(actual);
         assertThat(actual, hasKey("meta"));
         assertThat(actual, hasKey("data"));
         assertThat((Map<String, ?>) actual.get("meta"), hasEntry("count", 0.0));
