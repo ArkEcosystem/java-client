@@ -16,6 +16,18 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    integration {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    integrationImplementation.extendsFrom implementation
+    integrationRuntimeOnly.extendsFrom runtimeOnly
+}
+
 dependencies {
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.8.1'
     implementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '4.9.0'
@@ -24,17 +36,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-}
 
-sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-            srcDir file('src/integration-test/java')
-        }
-        resources.srcDir file('src/integration-test/resources')
-    }
+    integrationImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    integrationImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    integrationImplementation 'org.hamcrest:hamcrest-library:2.2'
 }
 
 task javadocJar(type: Jar) {
@@ -99,20 +104,18 @@ task fatJar(type: Jar) {
     with jar
 }
 
-configurations {
-    integrationTestCompile.extendsFrom testCompile
-    integrationTestRuntime.extendsFrom testRuntime
-}
+build.dependsOn 'spotlessApply'
 
-task integrationTest(type: Test) {
-    testClassesDirs = sourceSets.integrationTest.output.classesDirs
-    classpath = sourceSets.integrationTest.runtimeClasspath
+tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.integration.output.classesDirs
+    classpath = sourceSets.integration.runtimeClasspath
+    shouldRunAfter test
 }
 
 check.dependsOn integrationTest
-integrationTest.mustRunAfter test
-
-build.dependsOn 'spotlessApply'
 
 wrapper {
     gradleVersion = '7.2.0'
