@@ -1,10 +1,9 @@
 package org.arkecosystem.client.api;
 
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.arkecosystem.client.http.Client;
 
 public class Node {
     private final Client client;
