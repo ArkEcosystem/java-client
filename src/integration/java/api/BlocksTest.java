@@ -14,7 +14,6 @@ public class BlocksTest extends BaseClientTest {
     @Test
     void all() throws IOException {
         Map<String, Object> actual = connection.api().blocks.all();
-
         assertThat(actual, hasKey("data"));
         assertThat(actual, hasKey("meta"));
     }
@@ -23,7 +22,6 @@ public class BlocksTest extends BaseClientTest {
     void allWithParams() throws IOException {
         Map<String, Object> actual =
             connection.api().blocks.param("page", 1).param("limit", 100).all();
-
         assertThat(actual, hasKey("data"));
         assertThat(actual, hasKey("meta"));
     }
