@@ -1,14 +1,13 @@
 package org.arkecosystem.client.api;
 
-import org.arkecosystem.client.Connection;
-import org.arkecosystem.client.MockHelper;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.arkecosystem.client.Connection;
+import org.arkecosystem.client.MockHelper;
+import org.junit.jupiter.api.Test;
 
 public class LocksTest {
 
@@ -44,7 +43,8 @@ public class LocksTest {
     @Test
     void searchUnlockedWithParams() throws IOException {
         Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().locks.searchUnlocked(Collections.singletonMap("page", 1));
+        Map<String, Object> actual =
+                connection.api().locks.searchUnlocked(Collections.singletonMap("page", 1));
         assertTrue((boolean) actual.get("success"));
     }
 }
