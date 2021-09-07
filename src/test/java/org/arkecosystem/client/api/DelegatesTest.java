@@ -1,13 +1,12 @@
 package org.arkecosystem.client.api;
 
-import org.arkecosystem.client.Connection;
-import org.arkecosystem.client.MockHelper;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.arkecosystem.client.Connection;
+import org.arkecosystem.client.MockHelper;
+import org.junit.jupiter.api.Test;
 
 public class DelegatesTest {
 

@@ -1,10 +1,9 @@
 package org.arkecosystem.client.api;
 
-import org.arkecosystem.client.http.Client;
-
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.arkecosystem.client.http.Client;
 
 public class Delegates implements SupportsParams<Delegates> {
     private final Client client;
