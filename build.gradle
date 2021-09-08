@@ -13,6 +13,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -40,6 +41,10 @@ dependencies {
     integrationImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     integrationImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     integrationImplementation 'org.hamcrest:hamcrest-library:2.2'
+    integrationImplementation 'org.arkecosystem:crypto:2.0.0-beta-1'
+    integrationCompileOnly 'org.slf4j:slf4j-api:1.7.32'
+    integrationRuntimeOnly 'org.slf4j:slf4j-simple:1.7.32'
+
 }
 
 task javadocJar(type: Jar) {
