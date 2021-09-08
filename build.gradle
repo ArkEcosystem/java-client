@@ -44,7 +44,7 @@ dependencies {
     integrationImplementation 'org.arkecosystem:crypto:2.0.0-beta-1'
     integrationCompileOnly 'org.slf4j:slf4j-api:1.7.32'
     integrationRuntimeOnly 'org.slf4j:slf4j-simple:1.7.32'
-
+    integrationImplementation 'com.github.rholder:guava-retrying:2.0.0'
 }
 
 task javadocJar(type: Jar) {
