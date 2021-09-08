@@ -6,8 +6,10 @@ import com.github.rholder.retry.*;
 import com.google.common.collect.Lists;
 import org.arkecosystem.crypto.encoding.Hex;
 import org.arkecosystem.crypto.identities.Address;
+import org.arkecosystem.crypto.identities.PublicKey;
 import org.arkecosystem.crypto.networks.Devnet;
 import org.arkecosystem.crypto.transactions.Serializer;
+import org.arkecosystem.crypto.transactions.builder.MultiSignatureRegistrationBuilder;
 import org.arkecosystem.crypto.transactions.builder.SecondSignatureRegistrationBuilder;
 import org.arkecosystem.crypto.transactions.builder.TransferBuilder;
 import org.arkecosystem.crypto.transactions.builder.VoteBuilder;
@@ -110,6 +112,37 @@ public class SendingTransactionsTest extends BaseClientTest {
             .network(new Devnet().version())
             .nonce(getNonce(passphraseToAddress(newWalletMnemonic)))
             .signature("a second passphrase")
+            .sign(newWalletMnemonic)
+            .transaction);
+    }
+
+
+    @Test
+    void multiSignature() throws Exception {
+        // Create and fund a new wallet
+        String newWalletMnemonic = createMnemonicForNewWallet();
+        checkForTransaction(new TransferBuilder()
+            .network(new Devnet().version())
+            .recipient(passphraseToAddress(newWalletMnemonic))
+            .amount(2_000_000_000L)
+            .vendorField("Funding wallet for registering multi signature wallet")
+            .nonce(getNonce(passphraseToAddress(mnemonic)))
+            .sign(mnemonic)
+            .transaction);
+
+        // Register the new wallet for second signature
+        checkForTransaction(new MultiSignatureRegistrationBuilder()
+            .network(new Devnet().version())
+            .nonce(getNonce(passphraseToAddress(newWalletMnemonic)))
+            .publicKeys(Lists.newArrayList(
+                PublicKey.fromPassphrase(newWalletMnemonic),
+                PublicKey.fromPassphrase("secret 2"),
+                PublicKey.fromPassphrase("secret 3")
+            ))
+            .min(2)
+            .multiSign(newWalletMnemonic, 0)
+            .multiSign("secret 2", 1)
+            .multiSign("secret 3", 2)
             .sign(newWalletMnemonic)
             .transaction);
     }
