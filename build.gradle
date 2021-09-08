@@ -45,6 +45,7 @@ dependencies {
     integrationCompileOnly 'org.slf4j:slf4j-api:1.7.32'
     integrationRuntimeOnly 'org.slf4j:slf4j-simple:1.7.32'
     integrationImplementation 'com.github.rholder:guava-retrying:2.0.0'
+    integrationImplementation  "cash.z.ecc.android:kotlin-bip39:1.0.2"
 }
 
 task javadocJar(type: Jar) {
@@ -90,7 +91,7 @@ spotless {
             exclude '**/build/**'
         }
         googleJavaFormat('1.1').aosp()
-//        removeUnusedImports()
+        removeUnusedImports()
     }
 }
 

@@ -1,10 +1,14 @@
 package api;
 
+import cash.z.ecc.android.bip39.Mnemonics;
+import cash.z.ecc.android.bip39.Mnemonics.MnemonicCode;
 import com.github.rholder.retry.*;
+import com.google.common.collect.Lists;
 import org.arkecosystem.crypto.encoding.Hex;
 import org.arkecosystem.crypto.identities.Address;
 import org.arkecosystem.crypto.networks.Devnet;
 import org.arkecosystem.crypto.transactions.Serializer;
+import org.arkecosystem.crypto.transactions.builder.SecondSignatureRegistrationBuilder;
 import org.arkecosystem.crypto.transactions.builder.TransferBuilder;
 import org.arkecosystem.crypto.transactions.builder.VoteBuilder;
 import org.arkecosystem.crypto.transactions.types.Transaction;
@@ -14,10 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -45,42 +46,89 @@ public class SendingTransactionsTest extends BaseClientTest {
             .recipient("DFGWG8exRGfCduoALKWi4LWBakqLeEpPty")
             .amount(100000L)
             .vendorField("This is a transaction from Java")
-            .nonce(getNonce())
+            .nonce(getNonce(passphraseToAddress(mnemonic)))
             .sign(mnemonic)
             .transaction);
     }
 
     @Test
-    void unvoteAndVote() throws Exception {
-        checkForTransaction(new VoteBuilder()
+    void voteAndUnvote() throws Exception {
+        // Create and fund a new wallet
+        String newWalletMnemonic = createMnemonicForNewWallet();
+        checkForTransaction(new TransferBuilder()
             .network(new Devnet().version())
-            .addVote("-038d29ec215882912ebdc5cf5189ff7c4824485573f5119aec6aa4589dd85a15dd")
-            .nonce(getNonce())
+            .recipient(passphraseToAddress(newWalletMnemonic))
+            .amount(300000000L)
+            .vendorField("Funding wallet for voting")
+            .nonce(getNonce(passphraseToAddress(mnemonic)))
             .sign(mnemonic)
             .transaction);
 
+        // Vote
         checkForTransaction(new VoteBuilder()
             .network(new Devnet().version())
             .addVote("+038d29ec215882912ebdc5cf5189ff7c4824485573f5119aec6aa4589dd85a15dd")
-            .nonce(getNonce())
-            .sign(mnemonic)
+            .nonce(getNonce(passphraseToAddress(newWalletMnemonic)))
+            .sign(newWalletMnemonic)
+            .transaction);
+
+        // Unvote + vote
+        checkForTransaction(new VoteBuilder()
+            .network(new Devnet().version())
+            .addVotes(Lists.newArrayList(
+                "-038d29ec215882912ebdc5cf5189ff7c4824485573f5119aec6aa4589dd85a15dd",
+                "+03980b0482c60610695f2edc61bcfdae0d1048fb56d0041930eddc9e5c1246a5f5"
+            ))
+            .nonce(getNonce(passphraseToAddress(newWalletMnemonic)))
+            .sign(newWalletMnemonic)
+            .transaction);
+
+        // Unvote
+        checkForTransaction(new VoteBuilder()
+            .network(new Devnet().version())
+            .addVote("-03980b0482c60610695f2edc61bcfdae0d1048fb56d0041930eddc9e5c1246a5f5")
+            .nonce(getNonce(passphraseToAddress(newWalletMnemonic)))
+            .sign(newWalletMnemonic)
             .transaction);
     }
 
     @Test
-    void unvoteAndVoteCombined() throws Exception {
-        checkForTransaction(new VoteBuilder()
+    void secondSignature() throws Exception {
+        // Create and fund a new wallet
+        String newWalletMnemonic = createMnemonicForNewWallet();
+        checkForTransaction(new TransferBuilder()
             .network(new Devnet().version())
-            .addVote("-038d29ec215882912ebdc5cf5189ff7c4824485573f5119aec6aa4589dd85a15dd")
-            .addVote("+038d29ec215882912ebdc5cf5189ff7c4824485573f5119aec6aa4589dd85a15dd")
-            .nonce(getNonce())
+            .recipient(passphraseToAddress(newWalletMnemonic))
+            .amount(500000000L)
+            .vendorField("Funding wallet for registering 2nd signature")
+            .nonce(getNonce(passphraseToAddress(mnemonic)))
             .sign(mnemonic)
+            .transaction);
+
+        // Register the new wallet for second signature
+        checkForTransaction(new SecondSignatureRegistrationBuilder()
+            .network(new Devnet().version())
+            .nonce(getNonce(passphraseToAddress(newWalletMnemonic)))
+            .signature("a second passphrase")
+            .sign(newWalletMnemonic)
             .transaction);
     }
 
-    private int getNonce() throws IOException {
-        String address = Address.fromPassphrase(mnemonic, new Devnet().version());
-        logger.info("address: {},", address);
+    private String createMnemonicForNewWallet() {
+        MnemonicCode mnemonicCode = new MnemonicCode(Mnemonics.WordCount.COUNT_12, "en_US");
+        StringJoiner joiner = new StringJoiner(" ");
+        for (String strings : mnemonicCode) {
+            joiner.add(strings);
+        }
+        return joiner.toString();
+    }
+
+    private String passphraseToAddress(String mnemonic) {
+        return Address.fromPassphrase(mnemonic, new Devnet().version());
+    }
+
+    private int getNonce(String address) throws IOException {
+        logger.info("address: {}", address);
 
         Map<String, Object> wallet = (Map<String, Object>) connection.api().wallets.show(address).get("data");
         return Integer.parseInt((String) wallet.get("nonce")) + 1;
@@ -114,7 +162,7 @@ public class SendingTransactionsTest extends BaseClientTest {
             .retryIfExceptionOfType(Exception.class)
             .retryIfResult(aBoolean -> Objects.equals(aBoolean, false))
             .withWaitStrategy(WaitStrategies.fixedWait(2, TimeUnit.SECONDS))
-            .withStopStrategy(StopStrategies.stopAfterDelay(10, TimeUnit.SECONDS))
+            .withStopStrategy(StopStrategies.stopAfterDelay(20, TimeUnit.SECONDS))
             .build();
     }
 }
