@@ -54,7 +54,6 @@ public class SendingTransactionsTest extends BaseClientTest {
             .transaction);
     }
 
-
     @Test
     void createMupay() throws Exception {
         checkForTransaction(new MultiPaymentBuilder()
