@@ -10,6 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.hasKey;
 
+@SuppressWarnings("unchecked")
 public class NodeTest extends BaseClientTest {
 
     @Test

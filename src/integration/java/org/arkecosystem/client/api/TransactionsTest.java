@@ -11,6 +11,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@SuppressWarnings("unchecked")
 public class TransactionsTest extends BaseClientTest {
 
     @Test

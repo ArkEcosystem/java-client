@@ -18,7 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Objects;
+import java.util.StringJoiner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +29,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.hasKey;
 
+@SuppressWarnings("unchecked")
 public class SendingTransactionsTest extends BaseClientTest {
 
     private static final Logger logger = LoggerFactory.getLogger(SendingTransactionsTest.class);
@@ -211,7 +215,7 @@ public class SendingTransactionsTest extends BaseClientTest {
         logger.info("Transaction json {}", transaction.toJson());
         logger.info("Transaction hex {}", Hex.encode(Serializer.serialize(transaction)));
 
-        Map<String, Object> sent = connection.api().transactions.create(Arrays.asList(transaction.toHashMap()));
+        Map<String, Object> sent = connection.api().transactions.create(Collections.singletonList(transaction.toHashMap()));
         logger.info("Response {}", sent.toString());
         assertThat(sent, hasKey("data"));
         assertThat((Map<String, ?>) sent.get("data"), hasEntry("accept", Collections.singletonList(transaction.getId())));

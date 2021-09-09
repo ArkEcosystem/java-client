@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BaseClientTest {
+public abstract class BaseClientTest {
 
     protected Connection connection;
 
