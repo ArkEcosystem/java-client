@@ -50,6 +50,19 @@ public class SendingTransactionsTest extends BaseClientTest {
             .transaction);
     }
 
+
+    @Test
+    void createMupay() throws Exception {
+        checkForTransaction(new MultiPaymentBuilder()
+            .network(new Devnet().version())
+            .addPayment("DFGWG8exRGfCduoALKWi4LWBakqLeEpPty", 100000L)
+            .addPayment("DFGWG8exRGfCduoALKWi4LWBakqLeEpPty", 100000L)
+            .vendorField("This is a mupay transaction from Java")
+            .nonce(getNonce(passphraseToAddress(mnemonic)))
+            .sign(mnemonic)
+            .transaction);
+    }
+
     @Test
     void voteAndUnvote() throws Exception {
         // Create and fund a new wallet
