@@ -9,10 +9,7 @@ import org.arkecosystem.crypto.identities.Address;
 import org.arkecosystem.crypto.identities.PublicKey;
 import org.arkecosystem.crypto.networks.Devnet;
 import org.arkecosystem.crypto.transactions.Serializer;
-import org.arkecosystem.crypto.transactions.builder.MultiSignatureRegistrationBuilder;
-import org.arkecosystem.crypto.transactions.builder.SecondSignatureRegistrationBuilder;
-import org.arkecosystem.crypto.transactions.builder.TransferBuilder;
-import org.arkecosystem.crypto.transactions.builder.VoteBuilder;
+import org.arkecosystem.crypto.transactions.builder.*;
 import org.arkecosystem.crypto.transactions.types.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -116,7 +113,6 @@ public class SendingTransactionsTest extends BaseClientTest {
             .transaction);
     }
 
-
     @Test
     void multiSignature() throws Exception {
         // Create and fund a new wallet
@@ -130,7 +126,7 @@ public class SendingTransactionsTest extends BaseClientTest {
             .sign(mnemonic)
             .transaction);
 
-        // Register the new wallet for second signature
+        // Register the new wallet for multi signature
         checkForTransaction(new MultiSignatureRegistrationBuilder()
             .network(new Devnet().version())
             .nonce(getNonce(passphraseToAddress(newWalletMnemonic)))
@@ -143,6 +139,36 @@ public class SendingTransactionsTest extends BaseClientTest {
             .multiSign(newWalletMnemonic, 0)
             .multiSign("secret 2", 1)
             .multiSign("secret 3", 2)
+            .sign(newWalletMnemonic)
+            .transaction);
+    }
+
+    @Test
+    void delegateRegistration() throws Exception {
+        // Create and fund a new wallet
+        String newWalletMnemonic = createMnemonicForNewWallet();
+        String address = passphraseToAddress(newWalletMnemonic);
+        checkForTransaction(new TransferBuilder()
+            .network(new Devnet().version())
+            .recipient(address)
+            .amount(5000000000L)
+            .vendorField("Funding wallet for delegate registration")
+            .nonce(getNonce(passphraseToAddress(mnemonic)))
+            .sign(mnemonic)
+            .transaction);
+
+        // Register the new wallet as delegate
+        checkForTransaction(new DelegateRegistrationBuilder()
+            .network(new Devnet().version())
+            .nonce(getNonce(address))
+            .username("del." + address.toLowerCase().substring(0, 16))
+            .sign(newWalletMnemonic)
+            .transaction);
+
+        // Resign as delegate
+        checkForTransaction(new DelegateResignationBuilder()
+            .network(new Devnet().version())
+            .nonce(getNonce(address))
             .sign(newWalletMnemonic)
             .transaction);
     }
