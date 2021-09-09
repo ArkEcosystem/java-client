@@ -19,3 +19,5 @@ jobs:
 
             -   name: Test
                 run: gradle integrationTest
+                env:
+                    mnemonic: ${{ secrets.MNEMONIC }}
