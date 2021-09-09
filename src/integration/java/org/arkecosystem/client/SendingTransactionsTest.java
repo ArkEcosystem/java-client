@@ -1,10 +1,9 @@
-package org.arkecosystem.client.api;
+package org.arkecosystem.client;
 
 import cash.z.ecc.android.bip39.Mnemonics;
 import cash.z.ecc.android.bip39.Mnemonics.MnemonicCode;
 import com.github.rholder.retry.*;
 import com.google.common.collect.Lists;
-import org.arkecosystem.client.BaseClientTest;
 import org.arkecosystem.crypto.encoding.Hex;
 import org.arkecosystem.crypto.identities.Address;
 import org.arkecosystem.crypto.identities.PublicKey;
