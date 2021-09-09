@@ -1,5 +1,6 @@
-package api;
+package org.arkecosystem.client.api;
 
+import org.arkecosystem.client.BaseClientTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

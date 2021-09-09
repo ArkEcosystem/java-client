@@ -1,9 +1,10 @@
-package api;
+package org.arkecosystem.client.api;
 
 import cash.z.ecc.android.bip39.Mnemonics;
 import cash.z.ecc.android.bip39.Mnemonics.MnemonicCode;
 import com.github.rholder.retry.*;
 import com.google.common.collect.Lists;
+import org.arkecosystem.client.BaseClientTest;
 import org.arkecosystem.crypto.encoding.Hex;
 import org.arkecosystem.crypto.identities.Address;
 import org.arkecosystem.crypto.identities.PublicKey;
@@ -33,7 +34,7 @@ public class SendingTransactionsTest extends BaseClientTest {
 
     @Override
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         super.setUp();
         mnemonic = System.getenv("mnemonic");
     }
