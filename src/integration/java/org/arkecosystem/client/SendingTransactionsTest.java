@@ -39,7 +39,7 @@ public class SendingTransactionsTest extends BaseClientTest {
     @BeforeEach
     public void setUp() {
         super.setUp();
-        mnemonic = System.getenv("mnemonic");
+        mnemonic = System.getenv("INTEGRATION_TESTS_MNEMONIC");
     }
 
     @Test
