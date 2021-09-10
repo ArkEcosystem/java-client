@@ -83,7 +83,6 @@ task formatCode(dependsOn: ['spotlessApply'])
 
 task fatJar(type: Jar) {
     manifest.from jar.manifest
-    classifier = 'standalone'
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     } {
@@ -107,17 +106,8 @@ tasks.register('integrationTest', Test) {
     useJUnitPlatform()
 }
 
-check.dependsOn integrationTest
-
 wrapper {
     gradleVersion = '7.2'
-}
-
-task writeNewPom {
-    doLast {
-        pom {
-        }.writeTo("$buildDir/newpom.xml")
-    }
 }
 
 publishing {
