@@ -35,12 +35,4 @@ public class Delegates implements SupportsParams<Delegates> {
     public Map<String, Object> voters(String id) throws IOException {
         return this.client.get("delegates/" + id + "/voters", params);
     }
-
-    public Map<String, Object> search() throws IOException {
-        return this.client.post("delegates/search", params);
-    }
-
-    public Map<String, Object> search(Map<String, Object> parameters) throws IOException {
-        return this.client.post("delegates/search", parameters);
-    }
 }

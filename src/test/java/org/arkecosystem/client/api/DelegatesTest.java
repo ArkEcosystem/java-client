@@ -3,7 +3,6 @@ package org.arkecosystem.client.api;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.client.MockHelper;
@@ -52,21 +51,6 @@ public class DelegatesTest {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual =
                 connection.api().delegates.param("page", 1).param("limit", 100).voters("dummy");
-        assertTrue((boolean) actual.get("success"));
-    }
-
-    @Test
-    void search() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().delegates.search(new HashMap<>());
-        assertTrue((boolean) actual.get("success"));
-    }
-
-    @Test
-    void searchWithParams() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual =
-                connection.api().delegates.param("page", 1).param("limit", 100).search();
         assertTrue((boolean) actual.get("success"));
     }
 }

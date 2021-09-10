@@ -39,8 +39,4 @@ public class Node {
         parameters.put("days", null);
         return this.client.get("node/fees", parameters);
     }
-
-    public Map<String, Object> debug() throws IOException {
-        return this.client.get("node/debug");
-    }
 }
