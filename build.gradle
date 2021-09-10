@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'org.arkecosystem'
-version = '1.2.9'
+version = '2.0.0-beta-1'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -48,25 +48,9 @@ dependencies {
     integrationImplementation  "cash.z.ecc.android:kotlin-bip39:1.0.2"
 }
 
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-if (project.hasProperty("signing.keyId")) {
-    apply plugin: 'signing'
-    signing {
-        sign configurations.archives
-    }
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 test {
@@ -126,13 +110,21 @@ tasks.register('integrationTest', Test) {
 check.dependsOn integrationTest
 
 wrapper {
-    gradleVersion = '7.2.0'
+    gradleVersion = '7.2'
 }
 
 task writeNewPom {
     doLast {
         pom {
-            project {
+        }.writeTo("$buildDir/newpom.xml")
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
                 groupId = project.group
                 version = project.version
                 artifactId = 'client'
@@ -182,15 +174,6 @@ task writeNewPom {
                     url = 'https://github.com/ArkEcosystem/java-client'
                 }
             }
-        }.writeTo("$buildDir/newpom.xml")
-    }
-}
-
-publishing {
-
-    publications {
-        myLibrary(MavenPublication) {
-            from components.java
         }
     }
 
@@ -205,4 +188,11 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey as String, signingPassword as String)
+    sign publishing.publications.mavenJava
 }
