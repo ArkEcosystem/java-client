@@ -1,6 +1,6 @@
 name: Test
 
-on: [push]
+on: workflow_dispatch
 
 jobs:
     integration:
@@ -20,4 +20,4 @@ jobs:
             -   name: Test
                 run: gradle integrationTest
                 env:
-                    mnemonic: ${{ secrets.MNEMONIC }}
+                    INTEGRATION_TESTS_MNEMONIC: ${{ secrets.MNEMONIC }}
