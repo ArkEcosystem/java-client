@@ -50,7 +50,9 @@ jobs:
             -   name: Use Java Version ${{ matrix.java }}
                 uses: actions/setup-java@v1
                 with:
+                    distribution: 'zulu'
                     java-version: ${{ matrix.java }}
+                    cache: 'gradle'
 
             -   name: Install
                 run: gradle dependencies
