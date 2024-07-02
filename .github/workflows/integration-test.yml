@@ -5,19 +5,25 @@ on: workflow_dispatch
 jobs:
     integration:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                java: [8, 11, 15, 16, 17, 18, 19, 20, 21, 22]
 
         steps:
-            -   uses: actions/checkout@v2
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-            -   name: Use Java Version 8
-                uses: actions/setup-java@v1
-                with:
-                    java-version: 8
+            - name: Use Java Version ${{ matrix.java }}
+              uses: actions/setup-java@v2
+              with:
+                  distribution: "zulu"
+                  java-version: ${{ matrix.java }}
+                  cache: "gradle"
 
-            -   name: Install
-                run: gradle dependencies
+            - name: Install
+              run: gradle dependencies
 
-            -   name: Test
-                run: gradle integrationTest
-                env:
-                    INTEGRATION_TESTS_MNEMONIC: ${{ secrets.MNEMONIC }}
+            - name: Test
+              run: gradle integrationTest
+              env:
+                  INTEGRATION_TESTS_MNEMONIC: ${{ secrets.MNEMONIC }}
