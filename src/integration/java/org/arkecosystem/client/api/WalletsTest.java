@@ -131,16 +131,6 @@ public class WalletsTest extends BaseClientTest {
     }
 
     @Test
-    void locks() throws IOException {
-        Map<String, Object> actual = connection.api().wallets.locks("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
-        logger.info("actual: {}", actual);
-
-        assertThat(actual, hasKey("meta"));
-        assertThat(actual, hasKey("data"));
-        assertThat((Map<String, ?>) actual.get("meta"), hasEntry("count", 0.0));
-    }
-
-    @Test
     void top() throws IOException {
         Map<String, Object> actual = connection.api().wallets.top();
         logger.info("actual: {}", actual);

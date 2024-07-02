@@ -47,8 +47,4 @@ public class Wallets implements SupportsParams<Wallets> {
     public Map<String, Object> votes(String id) throws IOException {
         return this.client.get("wallets/" + id + "/votes", params);
     }
-
-    public Map<String, Object> locks(String id) throws IOException {
-        return this.client.get("wallets/" + id + "/locks");
-    }
 }
