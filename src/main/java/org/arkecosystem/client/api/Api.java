@@ -3,7 +3,6 @@ package org.arkecosystem.client.api;
 import org.arkecosystem.client.http.Client;
 
 public class Api {
-
     public final Blockchain blockchain;
     public final Blocks blocks;
     public final Delegates delegates;
@@ -15,6 +14,7 @@ public class Api {
     public final Votes votes;
     public final Wallets wallets;
     public final ApiNodes apiNodes;
+    public final Commits commits;
 
     public Api(Client client) {
         this.blockchain = new Blockchain(client);
@@ -28,5 +28,6 @@ public class Api {
         this.votes = new Votes(client);
         this.wallets = new Wallets(client);
         this.apiNodes = new ApiNodes(client);
+        this.commits = new Commits(client);
     }
 }
