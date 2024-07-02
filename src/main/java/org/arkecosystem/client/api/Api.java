@@ -14,6 +14,7 @@ public class Api {
     public final Transactions transactions;
     public final Votes votes;
     public final Wallets wallets;
+    public final ApiNodes apiNodes;
 
     public Api(Client client) {
         this.blockchain = new Blockchain(client);
@@ -26,5 +27,6 @@ public class Api {
         this.transactions = new Transactions(client);
         this.votes = new Votes(client);
         this.wallets = new Wallets(client);
+        this.apiNodes = new ApiNodes(client);
     }
 }
