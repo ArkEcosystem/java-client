@@ -8,7 +8,6 @@ public class Api {
     public final Blocks blocks;
     public final Delegates delegates;
     public final Entities entities;
-    public final Locks locks;
     public final Node node;
     public final Peers peers;
     public final Rounds rounds;
@@ -21,7 +20,6 @@ public class Api {
         this.blocks = new Blocks(client);
         this.delegates = new Delegates(client);
         this.entities = new Entities(client);
-        this.locks = new Locks(client);
         this.node = new Node(client);
         this.peers = new Peers(client);
         this.rounds = new Rounds(client);
