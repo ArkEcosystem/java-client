@@ -20,8 +20,7 @@ public class BlocksTest {
     @Test
     void allWithParams() throws IOException {
         ArkClient client = MockHelper.client();
-        Map<String, Object> actual =
-                client.api().blocks.param("page", 1).param("limit", 100).all();
+        Map<String, Object> actual = client.api().blocks.param("page", 1).param("limit", 100).all();
         assertTrue((boolean) actual.get("success"));
     }
 

@@ -1,12 +1,11 @@
 package org.arkecosystem.client;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 class ArkClientTest {
@@ -63,6 +62,8 @@ class ArkClientTest {
     void shouldThrowExceptionIfHostTypeIsInvalid() {
         ArkClient client = new ArkClient("https://old-host.com/api");
 
-        assertThrows(IllegalArgumentException.class, () -> client.setHost("https://new-host.com/api", "other"));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> client.setHost("https://new-host.com/api", "other"));
     }
 }
