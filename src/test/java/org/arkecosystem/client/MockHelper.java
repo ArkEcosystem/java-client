@@ -5,12 +5,12 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
 public class MockHelper {
-    public static Connection connection() {
+    public static ArkClient client() {
         MockWebServer mockServer = new MockWebServer();
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("host", mockServer.url("/").toString());
-        Connection connection = new Connection(map);
+        ArkClient client = new ArkClient(map.get("host").toString());
 
         MockResponse mockedResponse = new MockResponse();
         mockedResponse.setResponseCode(200);
@@ -18,6 +18,6 @@ public class MockHelper {
 
         mockServer.enqueue(mockedResponse);
 
-        return connection;
+        return client;
     }
 }
