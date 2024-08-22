@@ -29,7 +29,7 @@ public class Transactions implements SupportsParams<Transactions> {
     public Map<String, Object> create(List<Map<String, ?>> transactions) throws IOException {
         Map<String, Object> params = new HashMap<>();
         params.put("transactions", transactions);
-        return this.client.withApi('transactions').post("transactions", params);
+        return this.client.withApi("transactions").post("transactions", params);
     }
 
     public Map<String, Object> show(String id) throws IOException {

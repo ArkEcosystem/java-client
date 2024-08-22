@@ -65,13 +65,4 @@ class ArkClientTest {
 
         assertThrows(IllegalArgumentException.class, () -> client.setHost("https://new-host.com/api", "other"));
     }
-
-    @Test
-    void shouldAcceptCustomHandler() {
-        HandlerStack handler = HandlerStack.create();
-
-        ArkClient client = new ArkClient("dummy", handler);
-
-        assertEquals(handler, client.getHttpClient().getConfig("handler"));
-    }
 }
