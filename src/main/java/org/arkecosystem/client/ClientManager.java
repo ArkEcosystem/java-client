@@ -78,9 +78,7 @@ public class ClientManager {
         this.clients.remove(name);
     }
 
-    /**
-     * Disconnect from the default client.
-     */
+    /** Disconnect from the default client. */
     public void disconnect() {
         disconnect(null);
     }

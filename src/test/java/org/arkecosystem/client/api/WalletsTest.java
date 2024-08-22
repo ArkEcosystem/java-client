@@ -42,8 +42,7 @@ public class WalletsTest {
     @Test
     void transactionsWithParams() throws IOException {
         ArkClient client = MockHelper.client();
-        Map<String, Object> actual =
-                client.api().wallets.param("page", 1).transactions("dummy");
+        Map<String, Object> actual = client.api().wallets.param("page", 1).transactions("dummy");
         assertTrue((boolean) actual.get("success"));
     }
 

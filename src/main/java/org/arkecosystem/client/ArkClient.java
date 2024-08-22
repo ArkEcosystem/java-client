@@ -11,7 +11,8 @@ public class ArkClient {
     /**
      * Constructor to create an instance of ArkClient.
      *
-     * @param hostOrHosts Can be a string representing the host URL or a map with different types of hosts.
+     * @param hostOrHosts Can be a string representing the host URL or a map with different types of
+     *     hosts.
      */
     public ArkClient(Object hostOrHosts) {
         this.client = new Client(hostOrHosts);

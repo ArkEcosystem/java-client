@@ -50,8 +50,7 @@ public class TransactionsTest {
     @Test
     void allUnconfirmedWithParams() throws IOException {
         ArkClient client = MockHelper.client();
-        Map<String, Object> actual =
-                client.api().transactions.param("page", 1).allUnconfirmed();
+        Map<String, Object> actual = client.api().transactions.param("page", 1).allUnconfirmed();
         assertTrue((boolean) actual.get("success"));
     }
 

@@ -26,9 +26,11 @@ public class ClientManagerTest {
         ClientManager manager = new ClientManager();
         manager.connect(map.get("host").toString(), "dummy-client");
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            manager.connect(map.get("host").toString(), "dummy-client");
-        });
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> {
+                    manager.connect(map.get("host").toString(), "dummy-client");
+                });
     }
 
     @Test
@@ -59,9 +61,11 @@ public class ClientManagerTest {
     public void shouldThrowIfClientDoesNotExist() {
         ClientManager manager = new ClientManager();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            manager.client("non-existent-client");
-        });
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> {
+                    manager.client("non-existent-client");
+                });
     }
 
     @Test

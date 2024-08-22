@@ -20,8 +20,7 @@ public class VotesTest {
     @Test
     void allWithParams() throws IOException {
         ArkClient client = MockHelper.client();
-        Map<String, Object> actual =
-                client.api().votes.param("page", 1).param("limit", 100).all();
+        Map<String, Object> actual = client.api().votes.param("page", 1).param("limit", 100).all();
         assertTrue((boolean) actual.get("success"));
     }
 
