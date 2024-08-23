@@ -92,13 +92,6 @@ public class WalletsTest {
     }
 
     @Test
-    void locks() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().wallets.locks("dummy");
-        assertTrue((boolean) actual.get("success"));
-    }
-
-    @Test
     void top() throws IOException {
         Connection connection = MockHelper.connection();
         Map<String, Object> actual = connection.api().wallets.top();
