@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Map;
-import org.arkecosystem.client.Connection;
+import org.arkecosystem.client.ArkClient;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
 
@@ -12,16 +12,16 @@ public class ApiNodesTest {
 
     @Test
     void all() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().apiNodes.all();
+        ArkClient client = MockHelper.client();
+        Map<String, Object> actual = client.api().apiNodes.all();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void allWithParams() throws IOException {
-        Connection connection = MockHelper.connection();
+        ArkClient client = MockHelper.client();
         Map<String, Object> actual =
-                connection.api().apiNodes.param("page", 1).param("limit", 100).all();
+                client.api().apiNodes.param("page", 1).param("limit", 100).all();
         assertTrue((boolean) actual.get("success"));
     }
 }

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Map;
-import org.arkecosystem.client.Connection;
+import org.arkecosystem.client.ArkClient;
 import org.arkecosystem.client.MockHelper;
 import org.junit.jupiter.api.Test;
 
@@ -12,43 +12,43 @@ public class NodeTest {
 
     @Test
     void feesWithDays() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().node.fees(1);
+        ArkClient client = MockHelper.client();
+        Map<String, Object> actual = client.api().node.fees(1);
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void fees() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().node.fees();
+        ArkClient client = MockHelper.client();
+        Map<String, Object> actual = client.api().node.fees();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void status() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().node.status();
+        ArkClient client = MockHelper.client();
+        Map<String, Object> actual = client.api().node.status();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void syncing() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().node.syncing();
+        ArkClient client = MockHelper.client();
+        Map<String, Object> actual = client.api().node.syncing();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void configuration() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().node.configuration();
+        ArkClient client = MockHelper.client();
+        Map<String, Object> actual = client.api().node.configuration();
         assertTrue((boolean) actual.get("success"));
     }
 
     @Test
     void crypto() throws IOException {
-        Connection connection = MockHelper.connection();
-        Map<String, Object> actual = connection.api().node.crypto();
+        ArkClient client = MockHelper.client();
+        Map<String, Object> actual = client.api().node.crypto();
         assertTrue((boolean) actual.get("success"));
     }
 }
