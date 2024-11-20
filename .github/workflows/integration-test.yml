@@ -7,23 +7,23 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                java: [8, 11, 15, 16, 17, 18, 19, 20, 21, 22]
+                java: [17, 18, 19, 20, 21]
 
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Use Java Version ${{ matrix.java }}
-              uses: actions/setup-java@v2
+              uses: actions/setup-java@v3
               with:
-                  distribution: "zulu"
+                  distribution: "temurin"
                   java-version: ${{ matrix.java }}
                   cache: "gradle"
 
-            - name: Install
-              run: gradle dependencies
+            - name: Install Dependencies
+              run: ./gradlew dependencies
 
-            - name: Test
-              run: gradle integrationTest
+            - name: Run Integration Tests
+              run: ./gradlew integrationTest
               env:
                   INTEGRATION_TESTS_MNEMONIC: ${{ secrets.MNEMONIC }}
