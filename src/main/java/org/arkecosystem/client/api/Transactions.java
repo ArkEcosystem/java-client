@@ -26,7 +26,7 @@ public class Transactions implements SupportsParams<Transactions> {
         return this.client.get("transactions", params);
     }
 
-    public Map<String, Object> create(List<Map<String, ?>> transactions) throws IOException {
+    public Map<String, Object> create(List<String> transactions) throws IOException {
         Map<String, Object> params = new HashMap<>();
         params.put("transactions", transactions);
         return this.client.withApi("transactions").post("transactions", params);
