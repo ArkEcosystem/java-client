@@ -171,6 +171,7 @@ signing {
 
     def signingKey = findProperty("signingKey")
     def signingPassword = findProperty("signingPassword")
+    
     if (signingKey && signingPassword) {
         useInMemoryPgpKeys(signingKey as String, signingPassword as String)
         sign publishing.publications.mavenJava
