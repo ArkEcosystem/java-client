@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
     id 'signing'
     id 'jacoco'
-    id 'com.diffplug.spotless' version '5.6.1'
+    id 'com.diffplug.spotless' version '6.25.0'
 }
 
 group = 'org.arkecosystem'
@@ -38,7 +38,6 @@ dependencies {
     integrationImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     integrationImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     integrationImplementation 'org.hamcrest:hamcrest-library:2.2'
-    integrationImplementation 'org.arkecosystem:crypto:2.0.0-mainsail'
     integrationCompileOnly 'org.slf4j:slf4j-api:1.7.32'
     integrationRuntimeOnly 'org.slf4j:slf4j-simple:1.7.32'
     integrationImplementation 'com.github.rholder:guava-retrying:2.0.0'
@@ -74,7 +73,7 @@ spotless {
             include 'src/test/**/*.java'
             exclude '**/build/**'
         }
-        googleJavaFormat('1.1').aosp()
+        googleJavaFormat('1.17.0').aosp() 
         removeUnusedImports()
     }
 }
