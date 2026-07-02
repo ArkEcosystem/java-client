@@ -6,3 +6,6 @@ build
 out/
 .meghanada/
 .DS_Store
+
+# airc
+CLAUDE.local.md
